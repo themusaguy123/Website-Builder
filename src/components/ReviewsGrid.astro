@@ -1,0 +1,94 @@
+---
+import ReviewCard from './ReviewCard.astro';
+import { reviews } from '@/data/reviews';
+
+interface Props {
+  heading?: string;
+  showAll?: boolean;
+}
+
+const { heading = 'What Customers Say', showAll = false } = Astro.props;
+const displayed = showAll ? reviews : reviews.slice(0, 6);
+---
+
+<section class="section reviews-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>{heading}</h2>
+      <p class="section-sub">
+        Real reviews from real customers on Thumbtack.
+        <a href="https://www.thumbtack.com" target="_blank" rel="noopener noreferrer" class="thumbtack-link">
+          View our Thumbtack profile ↗
+        </a>
+      </p>
+    </div>
+
+    <div class="reviews-grid">
+      {displayed.map((review, i) => (
+        <div class="reveal" style={`transition-delay: ${i * 50}ms`}>
+          <ReviewCard
+            quote={review.quote}
+            author={review.author}
+            featured={review.featured}
+          />
+        </div>
+      ))}
+    </div>
+
+    {!showAll && (
+      <div class="reviews-cta reveal">
+        <a href="/reviews/" class="btn btn--outline">See all reviews</a>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .reviews-section { background-color: var(--color-bg-soft); }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  .section-header h2 { margin-bottom: var(--space-3); }
+
+  .section-sub {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    max-width: 48ch;
+    margin-inline: auto;
+  }
+
+  .thumbtack-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .thumbtack-link:hover { color: var(--color-accent-hover); }
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .reviews-grid { grid-template-columns: 1fr; }
+  }
+
+  .reviews-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-10);
+  }
+</style>

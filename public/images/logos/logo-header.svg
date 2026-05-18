@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" fill="none">
+  <!-- House roofline outline — light gray, sits above the text -->
+  <g stroke="#C2C7CE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Left roof slope -->
+    <polyline points="14,42 52,10 90,42"/>
+    <!-- Chimney on right side of roof -->
+    <polyline points="78,28 78,20 86,20 86,31"/>
+  </g>
+
+  <!-- "DMV" — bold orange, with wrench integrated into D -->
+  <g fill="#E05A1A">
+    <!-- D — custom shape: right half of D + wrench as left stroke -->
+    <!-- Wrench shaft (left vertical of D) -->
+    <rect x="14" y="44" width="6" height="24" rx="2"/>
+    <!-- Wrench head (top oval) -->
+    <ellipse cx="17" cy="46" rx="5" ry="4"/>
+    <!-- Wrench tail (bottom oval) -->
+    <ellipse cx="17" cy="66" rx="5" ry="4"/>
+    <!-- D right curve -->
+    <path d="M20 44 Q36 44 36 56 Q36 68 20 68 L20 44Z"/>
+
+    <!-- M -->
+    <polygon points="42,44 42,68 47,68 47,56 53,64 59,56 59,68 64,68 64,44 59,44 53,54 47,44"/>
+
+    <!-- V -->
+    <polygon points="70,44 76,44 82,62 88,44 94,44 84,68 80,68"/>
+  </g>
+
+  <!-- "APPLIANCE" — gray, lighter weight, aligned to right -->
+  <text x="104" y="64" font-family="'Inter Variable', Inter, system-ui, sans-serif" font-size="17" font-weight="500" letter-spacing="3" fill="#8A8F9A">APPLIANCE</text>
+</svg>

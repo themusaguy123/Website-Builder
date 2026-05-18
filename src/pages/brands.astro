@@ -1,0 +1,127 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import StickyMobileCTA from '@/components/StickyMobileCTA.astro';
+import { brands } from '@/data/brands';
+---
+
+<BaseLayout
+  title="Appliance Brands We Service | DMV Appliance Repair"
+  description="DMV Appliance Repair services all major appliance brands — Samsung, LG, GE, Whirlpool, Bosch, Sub-Zero, Viking, Miele, and 15 more. Family-owned since 2007."
+  schemaType="home"
+>
+  <section class="brands-hero section--slate">
+    <div class="container brands-hero-inner">
+      <h1>We Service Every Major Appliance Brand</h1>
+      <p>
+        From everyday GE and Whirlpool to premium Sub-Zero and Miele — we've seen them all.
+        Pir has been repairing appliances across the DMV since 2007 and is familiar with the
+        diagnostic systems, common failure points, and parts for every brand below.
+      </p>
+    </div>
+  </section>
+
+  <section class="section brands-grid-section">
+    <div class="container">
+      <div class="brands-big-grid">
+        {brands.map((brand, i) => (
+          <div class={`brand-block reveal`} style={`transition-delay: ${i * 30}ms`}>
+            <span class="brand-name">{brand}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="brands-note reveal">
+        <p>
+          Don't see your brand listed? We service many additional brands.
+          <a href="tel:+17038667776" class="brands-call-link">Call 703-866-7776</a> to confirm we service your appliance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <BookingForm />
+
+  <StickyMobileCTA />
+</BaseLayout>
+
+<style>
+  .brands-hero {
+    background-color: var(--color-slate);
+    padding-block: var(--space-16) var(--space-12);
+  }
+
+  .brands-hero-inner { max-width: 640px; }
+
+  .brands-hero h1 {
+    color: #fff;
+    font-size: var(--font-h2);
+    margin-bottom: var(--space-5);
+  }
+
+  .brands-hero p {
+    font-size: var(--font-body);
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    max-width: 58ch;
+  }
+
+  .brands-grid-section { background-color: var(--color-bg-soft); }
+
+  .brands-big-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-10);
+  }
+
+  .brand-block {
+    background-color: #fff;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5) var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 72px;
+    transition:
+      border-color var(--duration-base) var(--ease-out),
+      box-shadow var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .brand-block:hover {
+      border-color: var(--color-ink-soft);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  .brand-name {
+    font-size: var(--font-body);
+    font-weight: 600;
+    color: var(--color-ink-muted);
+    text-align: center;
+  }
+
+  .brands-note {
+    text-align: center;
+  }
+
+  .brands-note p {
+    font-size: var(--font-small);
+    color: var(--color-ink-muted);
+    max-width: 50ch;
+    margin-inline: auto;
+  }
+
+  .brands-call-link {
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .brands-call-link:hover { color: var(--color-accent-hover); }
+  }
+</style>

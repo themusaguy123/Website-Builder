@@ -1,0 +1,24 @@
+# Netlify _redirects — old WordPress URL → new canonical URLs
+/refrigerator-service/                 /services/refrigerator-repair/            301
+/refrigerator-repair-service/          /services/refrigerator-repair/            301
+/washer-repair/                        /services/washing-machine-repair/         301
+/washing-machine-repair-service/       /services/washing-machine-repair/         301
+/dryer-repair-service/                 /services/dryer-repair/                   301
+/dishwasher-repair-service/            /services/dishwasher-repair/              301
+/oven-repair/                          /services/oven-and-range-repair/          301
+/oven-repair-service/                  /services/oven-and-range-repair/          301
+/range-repair/                         /services/oven-and-range-repair/          301
+/stove-repair/                         /services/cooktop-and-stove-repair/       301
+/cooktop-repair/                       /services/cooktop-and-stove-repair/       301
+/garbage-disposal-repair-service/      /services/garbage-disposal-repair/        301
+/ice-maker-repair-service/             /services/ice-maker-repair/               301
+/microwave-repair-service/             /services/microwave-repair/               301
+/appliance-repair-arlington-va/        /locations/arlington-va/                  301
+/appliance-repair-alexandria-va/       /locations/alexandria-va/                 301
+/appliance-repair-fairfax-va/          /locations/fairfax-va/                    301
+/appliance-repair-chantilly-va/        /locations/chantilly-va/                  301
+/appliance-repair-bethesda-md/         /locations/bethesda-md/                   301
+/appliance-repair-silver-spring-md/    /locations/silver-spring-md/              301
+/appliance-repair-washington-dc/       /locations/washington-dc/                 301
+/contact-us/                           /contact/                                 301
+/about-us/                             /about/                                   301

@@ -1,0 +1,67 @@
+---
+import ServiceCard from './ServiceCard.astro';
+import { services } from '@/data/services';
+
+interface Props {
+  city?: string;
+  heading?: string;
+}
+
+const { city, heading = 'Appliances We Repair' } = Astro.props;
+---
+
+<section class="section section--soft service-grid-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>{heading}</h2>
+      <p class="section-sub">
+        We repair all major household appliances — most fixed in a single visit because we carry common parts on the truck.
+      </p>
+    </div>
+    <div class="service-grid">
+      {services.map((service, i) => (
+        <div class="reveal" style={`transition-delay: ${i * 40}ms`}>
+          <ServiceCard
+            name={service.name}
+            slug={service.slug}
+            description={service.description}
+            icon={service.icon}
+            city={city}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  .section-header h2 {
+    margin-bottom: var(--space-3);
+  }
+
+  .section-sub {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    max-width: 54ch;
+    margin-inline: auto;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 900px) {
+    .service-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .service-grid { grid-template-columns: 1fr; }
+  }
+</style>

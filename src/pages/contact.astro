@@ -1,0 +1,253 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import TrustBar from '@/components/TrustBar.astro';
+import StickyMobileCTA from '@/components/StickyMobileCTA.astro';
+---
+
+<BaseLayout
+  title="Contact DMV Appliance Repair | Call or Request a Callback"
+  description="Contact DMV Appliance Repair for same-day appliance service. Call VA: 703-866-7776, MD: 301-907-6666, DC: 202-783-2055. 30-minute callback guarantee."
+  schemaType="home"
+>
+  <Hero
+    variant="contact"
+    headline="Get in Touch"
+    subheadline="Call us directly or fill out the form below and we'll call you back within 30 minutes. Same-day service available 7 days a week."
+  />
+
+  <TrustBar />
+
+  <!-- Contact options -->
+  <section class="section contact-options-section">
+    <div class="container contact-options-inner">
+      <div class="contact-direct">
+        <h2>Call Us Directly</h2>
+        <p>Use the number for your area — all three reach us, and all three charge the same rate.</p>
+
+        <div class="contact-phone-cards">
+          <a href="tel:+17038667776" class="contact-phone-card">
+            <span class="contact-phone-region">Virginia</span>
+            <span class="contact-phone-num">703-866-7776</span>
+            <span class="contact-phone-note">Northern VA — Fairfax, Loudoun, Prince William, Arlington</span>
+          </a>
+          <a href="tel:+13019076666" class="contact-phone-card">
+            <span class="contact-phone-region">Maryland</span>
+            <span class="contact-phone-num">301-907-6666</span>
+            <span class="contact-phone-note">Montgomery, Prince George's & Howard Counties</span>
+          </a>
+          <a href="tel:+12027832055" class="contact-phone-card">
+            <span class="contact-phone-region">Washington D.C.</span>
+            <span class="contact-phone-num">202-783-2055</span>
+            <span class="contact-phone-note">All neighborhoods and quadrants across the District</span>
+          </a>
+        </div>
+
+        <div class="contact-email-row">
+          <a href="mailto:Info@dmvappliance.com" class="contact-email-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Info@dmvappliance.com
+          </a>
+        </div>
+      </div>
+
+      <aside class="contact-hours-aside">
+        <div class="hours-box">
+          <h3 class="hours-heading">Hours</h3>
+          <div class="hours-row">
+            <span class="hours-days">Monday – Sunday</span>
+            <span class="hours-times">7:00 AM – 9:00 PM</span>
+          </div>
+          <p class="hours-note">
+            Same rate every day — mornings, evenings, weekends, and holidays. No upcharges.
+          </p>
+        </div>
+        <div class="callback-box">
+          <div class="callback-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <strong>30-Minute Callback</strong>
+            <p>Submit the form or leave a voicemail and we'll call back within 30 minutes during business hours.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <BookingForm />
+
+  <StickyMobileCTA />
+</BaseLayout>
+
+<style>
+  .contact-options-section { background-color: var(--color-bg); }
+
+  .contact-options-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .contact-options-inner { grid-template-columns: 1fr; }
+  }
+
+  .contact-direct h2 { margin-bottom: var(--space-3); }
+
+  .contact-direct > p {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-phone-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+
+  .contact-phone-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: var(--space-5);
+    background-color: var(--color-bg-soft);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition:
+      border-color var(--duration-base) var(--ease-out),
+      background-color var(--duration-base) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .contact-phone-card:hover {
+      border-color: var(--color-accent);
+      background-color: var(--color-accent-soft);
+    }
+  }
+
+  .contact-phone-card:active { transform: scale(0.98); }
+
+  .contact-phone-region {
+    font-size: var(--font-xs);
+    font-weight: 600;
+    color: var(--color-accent-hover);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .contact-phone-num {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.01em;
+  }
+
+  .contact-phone-note {
+    font-size: var(--font-xs);
+    color: var(--color-ink-soft);
+    margin-top: 0.15rem;
+  }
+
+  .contact-email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .contact-email-link:hover { color: var(--color-ink); }
+  }
+
+  /* Hours aside */
+  .hours-box {
+    background-color: var(--color-bg-soft);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    margin-bottom: var(--space-4);
+  }
+
+  .hours-heading {
+    font-size: var(--font-small);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .hours-days {
+    font-size: var(--font-body);
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+
+  .hours-times {
+    font-size: var(--font-body);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .hours-note {
+    font-size: var(--font-xs);
+    color: var(--color-ink-soft);
+    max-width: none;
+    line-height: 1.5;
+  }
+
+  .callback-box {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    background-color: var(--color-accent-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+  }
+
+  .callback-icon {
+    color: var(--color-accent-hover);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .callback-box strong {
+    display: block;
+    font-size: var(--font-small);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: var(--space-1);
+  }
+
+  .callback-box p {
+    font-size: var(--font-xs);
+    color: var(--color-ink-muted);
+    line-height: 1.5;
+    max-width: none;
+  }
+</style>

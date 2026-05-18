@@ -1,0 +1,339 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import TrustBar from '@/components/TrustBar.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ReviewCard from '@/components/ReviewCard.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import FAQ from '@/components/FAQ.astro';
+import StickyMobileCTA from '@/components/StickyMobileCTA.astro';
+import WhyChooseUs from '@/components/WhyChooseUs.astro';
+import { cities } from '@/data/cities';
+import { services } from '@/data/services';
+import { reviews } from '@/data/reviews';
+
+export async function getStaticPaths() {
+  return cities.map((c) => ({
+    params: { slug: c.slug },
+    props: { city: c },
+  }));
+}
+
+const { city } = Astro.props;
+
+const stateLabel = city.state === 'DC' ? 'Washington D.C.' : city.state;
+const featuredReviews = reviews.slice(0, 3);
+---
+
+<BaseLayout
+  title={`Appliance Repair in ${city.name}, ${stateLabel} | Same-Day Service | DMV Appliance Repair`}
+  description={`Same-day appliance repair in ${city.name}, ${stateLabel}. Family-owned since 2007. No weekend fees. We carry parts on the truck — most repairs done in one visit. Call ${city.phone}.`}
+  schemaType="location"
+  schemaMeta={{
+    cityName: city.name,
+    state: city.state,
+    url: `https://dmvappliance.com/locations/${city.slug}/`,
+  }}
+>
+  <Hero
+    variant="location"
+    headline={`Appliance Repair in ${city.name}, ${stateLabel} — Same Day, 7 Days a Week`}
+    subheadline={city.intro}
+    badge={`Serving ${city.name} since 2007`}
+  />
+
+  <TrustBar />
+
+  <!-- City intro + phone -->
+  <section class="section city-intro-section">
+    <div class="container city-intro-inner">
+      <div class="city-intro-content">
+        <h2>Appliance Repair Service in {city.name}</h2>
+        <p>
+          When a refrigerator stops cooling or a washer won't drain, you need someone who can
+          actually get there and fix it — today. DMV Appliance Repair has been serving{' '}
+          {city.name} homeowners since 2007. Pir knows the area, arrives prepared, and handles
+          most repairs in a single visit.
+        </p>
+        <p>
+          We service all major appliance brands — Samsung, LG, Whirlpool, GE, Bosch, KitchenAid,
+          Miele, Sub-Zero, Viking, and many more. Same-day appointments available every day of the week.
+        </p>
+        <div class="city-ctas">
+          <a href={city.phoneHref} class="btn btn--primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+            </svg>
+            Call {city.phone}
+          </a>
+          <a href="#booking" class="btn btn--outline">Request a Callback</a>
+        </div>
+      </div>
+
+      <aside class="city-info-aside">
+        <div class="city-info-box">
+          <h3 class="city-info-heading">Neighborhoods we serve in {city.name}</h3>
+          <ul class="neighborhood-list" role="list">
+            {city.neighborhoods.map((n) => (
+              <li class="neighborhood-item">{n}</li>
+            ))}
+          </ul>
+        </div>
+        {city.landmarks.length > 0 && (
+          <div class="city-landmarks">
+            <h3 class="city-info-heading">Local landmarks</h3>
+            <ul class="landmark-list" role="list">
+              {city.landmarks.map((l) => (
+                <li class="landmark-item">{l}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+
+  <!-- Services in this city -->
+  <section class="section section--soft services-in-city">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Appliances We Repair in {city.name}</h2>
+        <p class="section-sub">
+          All 9 appliance types, same-day availability, parts on the truck.
+        </p>
+      </div>
+      <div class="city-services-grid">
+        {services.map((service, i) => (
+          <div class="reveal" style={`transition-delay: ${i * 40}ms`}>
+            <ServiceCard
+              name={service.name}
+              slug={service.slug}
+              description={service.description}
+              icon={service.icon}
+              city={city.name}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <WhyChooseUs city={city.name} />
+
+  <!-- Reviews -->
+  <section class="section section--soft">
+    <div class="container">
+      <h2 class="reveal">What Customers Say</h2>
+      <div class="city-reviews-grid">
+        {featuredReviews.map((review, i) => (
+          <div class="reveal" style={`transition-delay: ${i * 50}ms`}>
+            <ReviewCard quote={review.quote} author={review.author} featured={review.featured} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby areas -->
+  {city.nearbyAreas.length > 0 && (
+    <section class="section nearby-section">
+      <div class="container">
+        <h2 class="reveal">We Also Serve These Nearby Areas</h2>
+        <p class="nearby-sub reveal">
+          In addition to {city.name}, we cover the surrounding communities.
+        </p>
+        <div class="nearby-chips reveal" style="transition-delay: 60ms">
+          {city.nearbyAreas.map((area, i) => (
+            <a
+              href={`/locations/${city.nearbyAreaSlugs[i] ?? '#'}/`}
+              class="nearby-chip"
+            >
+              {area}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <BookingForm />
+
+  <FAQ
+    items={city.localFAQ}
+    heading={`${city.name} Appliance Repair FAQ`}
+  />
+
+  <StickyMobileCTA />
+</BaseLayout>
+
+<style>
+  /* ── City intro ── */
+  .city-intro-section { background-color: var(--color-bg); }
+
+  .city-intro-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .city-intro-inner { grid-template-columns: 1fr; }
+  }
+
+  .city-intro-content h2 { margin-bottom: var(--space-4); }
+
+  .city-intro-content p {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .city-ctas {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-top: var(--space-6);
+  }
+
+  /* Aside */
+  .city-info-aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .city-info-box,
+  .city-landmarks {
+    background-color: var(--color-bg-soft);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+  }
+
+  .city-info-heading {
+    font-size: var(--font-small);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: var(--space-3);
+  }
+
+  .neighborhood-list,
+  .landmark-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .neighborhood-item {
+    padding: 0.25rem 0.625rem;
+    background-color: #fff;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    font-size: var(--font-xs);
+    font-weight: 500;
+    color: var(--color-ink-muted);
+  }
+
+  .landmark-item {
+    font-size: var(--font-small);
+    color: var(--color-ink-muted);
+    padding: 0.15rem 0;
+    list-style: none;
+  }
+
+  .landmark-item::before {
+    content: '📍';
+    margin-right: var(--space-2);
+    font-size: 0.8em;
+  }
+
+  /* ── City services grid ── */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  .section-header h2 { margin-bottom: var(--space-3); }
+
+  .section-sub {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    max-width: 50ch;
+    margin-inline: auto;
+  }
+
+  .city-services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 900px) {
+    .city-services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .city-services-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Reviews grid ── */
+  .city-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 860px) {
+    .city-reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .city-reviews-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Nearby ── */
+  .nearby-section { background-color: var(--color-bg-soft); }
+
+  .nearby-section h2 { margin-bottom: var(--space-3); }
+
+  .nearby-sub {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .nearby-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .nearby-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.875rem;
+    border-radius: var(--radius-pill);
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    background-color: #fff;
+    border: 1.5px solid var(--color-border);
+    text-decoration: none;
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .nearby-chip:hover {
+      background-color: var(--color-accent-soft);
+      color: var(--color-ink);
+      border-color: transparent;
+    }
+  }
+
+  .nearby-chip:active { transform: scale(0.97); }
+</style>

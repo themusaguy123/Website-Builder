@@ -1,0 +1,94 @@
+---
+import { brands } from '@/data/brands';
+---
+
+<section class="brand-strip section--soft">
+  <div class="container brand-strip-inner">
+    <p class="brand-strip-label reveal">We service all major brands</p>
+    <div class="brand-grid reveal" style="transition-delay: 60ms">
+      {brands.map((brand) => (
+        <a
+          href="/brands/"
+          class="brand-chip"
+          aria-label={`We service ${brand} appliances`}
+        >
+          {brand}
+        </a>
+      ))}
+    </div>
+    <p class="brand-strip-cta reveal" style="transition-delay: 120ms">
+      <a href="/brands/" class="brand-all-link">
+        View all 23 brands we service →
+      </a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .brand-strip {
+    padding-block: var(--space-16);
+  }
+
+  .brand-strip-inner {
+    text-align: center;
+  }
+
+  .brand-strip-label {
+    font-size: var(--font-xs);
+    font-weight: 500;
+    color: var(--color-ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-6);
+    max-width: none;
+  }
+
+  .brand-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+    margin-bottom: var(--space-6);
+  }
+
+  .brand-chip {
+    padding: 0.35rem 0.875rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    background-color: #fff;
+    text-decoration: none;
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .brand-chip:hover {
+      background-color: var(--color-ink);
+      color: #fff;
+      border-color: var(--color-ink);
+    }
+  }
+
+  .brand-chip:active {
+    transform: scale(0.97);
+  }
+
+  .brand-strip-cta { max-width: none; }
+
+  .brand-all-link {
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .brand-all-link:hover { color: var(--color-accent-hover); }
+  }
+</style>

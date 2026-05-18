@@ -1,0 +1,284 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustBar from '@/components/TrustBar.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import StickyMobileCTA from '@/components/StickyMobileCTA.astro';
+---
+
+<BaseLayout
+  title="About DMV Appliance Repair | Family-Owned Since 2007"
+  description="DMV Appliance Repair is a family-owned appliance repair service operating in Northern Virginia, Maryland, and D.C. since 2007. Meet Pir and learn what makes us different."
+  schemaType="home"
+>
+  <section class="about-hero section--slate">
+    <div class="container about-hero-inner">
+      <div class="about-hero-content">
+        <div class="about-eyebrow">
+          <span class="badge badge--soft">Family-owned since 2007</span>
+        </div>
+        <h1>We're not a franchise.<br />We're your neighbors.</h1>
+        <p>
+          DMV Appliance Repair is a family-run business that has been serving Northern Virginia,
+          Maryland, and Washington D.C. since 2007. When you call us, you're reaching real people
+          who care about getting the repair right — not a call center that dispatches whoever is available.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <TrustBar />
+
+  <!-- Pir's story -->
+  <section class="section about-story-section">
+    <div class="container about-story-inner">
+      <div class="about-story-content">
+        <h2>Meet Pir — Your Technician</h2>
+        <p>
+          Pir is the primary technician at DMV Appliance Repair — and for most customers, he's the
+          person who shows up at your door, diagnoses the problem, and fixes it.
+        </p>
+        <p>
+          Customers consistently describe him as knowledgeable, professional, and honest. That last
+          part matters. Pir has literally told customers not to buy an expensive part when a cheaper
+          fix would do the job. He's helped people unload and reload freezers while making repairs.
+          He's fixed ovens on Saturdays because that's when the customer needed it done.
+        </p>
+        <p>
+          That kind of service is hard to script. It comes from 18+ years of doing this work and
+          genuinely caring about the outcome for the homeowner — not just the invoice.
+        </p>
+
+        <blockquote class="story-quote">
+          <p>"He went over and beyond by helping me to get everything out and in my freezer. I will definitely recommend him to all my friends."</p>
+          <footer><cite>— Shahan H., Thumbtack review</cite></footer>
+        </blockquote>
+      </div>
+
+      <aside class="about-stats-aside">
+        <div class="about-stat-grid">
+          <div class="about-stat">
+            <span class="about-stat-num">18+</span>
+            <span class="about-stat-label">Years in business</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num">4.8★</span>
+            <span class="about-stat-label">Thumbtack rating</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num">3</span>
+            <span class="about-stat-label">States served</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat-num">25+</span>
+            <span class="about-stat-label">Cities in the DMV</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- What makes us different -->
+  <section class="section section--soft">
+    <div class="container about-diff-inner">
+      <h2 class="reveal">What Makes Us Different</h2>
+
+      <div class="diff-grid">
+        <div class="diff-item reveal">
+          <h3>We tell you the truth</h3>
+          <p>
+            If a repair doesn't make financial sense, we tell you. We've told customers to skip an
+            expensive part and go with a cheaper fix. We've recommended against repairs when the
+            appliance wasn't worth saving. We'd rather give you a straight answer than pad an invoice.
+          </p>
+        </div>
+
+        <div class="diff-item reveal" style="transition-delay: 60ms">
+          <h3>We come prepared</h3>
+          <p>
+            We carry common parts on the truck. Compressor relays, thermal fuses, heating elements,
+            drain pumps, door gaskets. Most repairs don't require a parts order — we diagnose it,
+            pull the part off the truck, and fix it the same day.
+          </p>
+        </div>
+
+        <div class="diff-item reveal" style="transition-delay: 120ms">
+          <h3>No surprise fees. Ever.</h3>
+          <p>
+            Same rate mornings, evenings, weekends, and holidays. We quote the price before starting.
+            The price we quote is the price you pay. And every repair comes with a warranty on parts
+            and labor.
+          </p>
+        </div>
+
+        <div class="diff-item reveal" style="transition-delay: 40ms">
+          <h3>We're actually reachable</h3>
+          <p>
+            We get back to every call and request within 30 minutes. When you leave a voicemail at
+            9am on a Saturday, we call back. When you have a question about the repair, you can reach
+            the person who did it.
+          </p>
+        </div>
+
+        <div class="diff-item reveal" style="transition-delay: 100ms">
+          <h3>We're in your community</h3>
+          <p>
+            We're not a national chain that dispatches contractors. We're a DMV-based business. The
+            money stays local. The technician knows your neighborhood. We're building a reputation
+            here, which means we have every incentive to do the job right.
+          </p>
+        </div>
+
+        <div class="diff-item reveal" style="transition-delay: 160ms">
+          <h3>$60 off every completed repair</h3>
+          <p>
+            We discount $60 off every completed repair and waive the service call when we do the
+            work. Between the discount and the free diagnostic on completed repairs, most customers
+            pay $100–$200 total.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <BookingForm />
+
+  <StickyMobileCTA />
+</BaseLayout>
+
+<style>
+  .about-hero {
+    background-color: var(--color-slate);
+    padding-block: var(--space-16) var(--space-12);
+  }
+
+  .about-hero-inner {
+    max-width: 720px;
+  }
+
+  .about-eyebrow { margin-bottom: var(--space-4); }
+
+  .about-hero h1 {
+    font-size: var(--font-h2);
+    color: #fff;
+    margin-bottom: var(--space-5);
+    letter-spacing: -0.02em;
+  }
+
+  .about-hero p {
+    font-size: var(--font-body);
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    max-width: 60ch;
+  }
+
+  /* Story section */
+  .about-story-section { background-color: var(--color-bg); }
+
+  .about-story-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .about-story-inner { grid-template-columns: 1fr; }
+  }
+
+  .about-story-content h2 { margin-bottom: var(--space-5); }
+
+  .about-story-content p {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .story-quote {
+    margin-top: var(--space-6);
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-5);
+  }
+
+  .story-quote p {
+    font-size: var(--font-body);
+    font-style: italic;
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .story-quote cite {
+    font-size: var(--font-small);
+    color: var(--color-ink-soft);
+    font-style: normal;
+  }
+
+  /* Stats */
+  .about-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .about-stat {
+    background-color: var(--color-bg-soft);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .about-stat-num {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .about-stat-label {
+    font-size: var(--font-xs);
+    color: var(--color-ink-soft);
+    max-width: none;
+  }
+
+  /* Diff section */
+  .about-diff-inner h2 { margin-bottom: var(--space-10); }
+
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 900px) {
+    .diff-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .diff-grid { grid-template-columns: 1fr; }
+  }
+
+  .diff-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1.5px solid var(--color-border);
+    background-color: #fff;
+  }
+
+  .diff-item h3 {
+    font-size: var(--font-h3);
+    color: var(--color-ink);
+  }
+
+  .diff-item p {
+    font-size: var(--font-small);
+    color: var(--color-ink-muted);
+    line-height: 1.65;
+    max-width: 38ch;
+  }
+</style>

@@ -1,0 +1,209 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import StickyMobileCTA from '@/components/StickyMobileCTA.astro';
+
+const articles = [
+  {
+    slug: 'dryer-not-heating',
+    title: 'Dryer Not Heating? Here\'s What\'s Wrong and How to Fix It',
+    excerpt: 'A dryer that runs but produces no heat has a short list of causes — and most are straightforward repairs. Here\'s how to diagnose it.',
+    service: 'Dryer Repair',
+    serviceSlug: 'dryer-repair',
+    readTime: '6 min read',
+  },
+  {
+    slug: 'dishwasher-not-draining',
+    title: 'Dishwasher Not Draining: Causes and Fixes',
+    excerpt: 'Standing water in the bottom of your dishwasher is almost always a clogged filter, blocked drain hose, or failed pump. Here\'s how to tell which one.',
+    service: 'Dishwasher Repair',
+    serviceSlug: 'dishwasher-repair',
+    readTime: '5 min read',
+  },
+  {
+    slug: 'samsung-refrigerator-error-codes',
+    title: 'Samsung Refrigerator Error Codes Explained',
+    excerpt: 'Samsung refrigerators display error codes when something\'s wrong. This guide covers the most common codes and what they mean for your fridge.',
+    service: 'Refrigerator Repair',
+    serviceSlug: 'refrigerator-repair',
+    readTime: '8 min read',
+  },
+  {
+    slug: 'lg-washer-oe-error-fix',
+    title: 'LG Washer OE Error Code: What It Means and How to Fix It',
+    excerpt: 'OE on your LG washer means the machine can\'t drain in time. The cause is almost always a clogged filter or blocked drain hose — here\'s how to clear it.',
+    service: 'Washing Machine Repair',
+    serviceSlug: 'washing-machine-repair',
+    readTime: '5 min read',
+  },
+  {
+    slug: 'garbage-disposal-humming-but-not-working',
+    title: 'Garbage Disposal Humming But Not Working? Here\'s the Fix',
+    excerpt: 'A disposal that hums but won\'t spin has a jammed impeller plate. This is usually a 5-minute fix with a hex key — no service call needed.',
+    service: 'Garbage Disposal Repair',
+    serviceSlug: 'garbage-disposal-repair',
+    readTime: '4 min read',
+  },
+];
+---
+
+<BaseLayout
+  title="Appliance Repair Resources | DMV Appliance Repair"
+  description="Troubleshooting guides and how-to articles for common appliance problems — from Samsung refrigerator error codes to LG washer OE errors. Written by DMV Appliance Repair."
+  schemaType="home"
+>
+  <section class="resources-hero section--slate">
+    <div class="container resources-hero-inner">
+      <h1>Appliance Troubleshooting Guides</h1>
+      <p>
+        Straight answers to common appliance problems. Written the way Pir explains it to customers —
+        what's actually wrong, what you can try yourself, and when to call for help.
+      </p>
+    </div>
+  </section>
+
+  <section class="section resources-list-section">
+    <div class="container">
+      <div class="articles-list">
+        {articles.map((article, i) => (
+          <article class={`article-card reveal`} style={`transition-delay: ${i * 50}ms`}>
+            <div class="article-card-content">
+              <a href={`/services/${article.serviceSlug}/`} class="article-service-tag">
+                {article.service}
+              </a>
+              <h2 class="article-title">
+                <a href={`/resources/${article.slug}/`} class="article-title-link">
+                  {article.title}
+                </a>
+              </h2>
+              <p class="article-excerpt">{article.excerpt}</p>
+            </div>
+            <div class="article-card-footer">
+              <span class="article-read-time">{article.readTime}</span>
+              <a href={`/resources/${article.slug}/`} class="article-read-link">
+                Read article →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <StickyMobileCTA />
+</BaseLayout>
+
+<style>
+  .resources-hero {
+    background-color: var(--color-slate);
+    padding-block: var(--space-16) var(--space-12);
+  }
+
+  .resources-hero-inner { max-width: 640px; }
+
+  .resources-hero h1 {
+    color: #fff;
+    font-size: var(--font-h2);
+    margin-bottom: var(--space-4);
+  }
+
+  .resources-hero p {
+    font-size: var(--font-body);
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    max-width: 56ch;
+  }
+
+  .resources-list-section { background-color: var(--color-bg-soft); }
+
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 800px;
+  }
+
+  .article-card {
+    background-color: #fff;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    transition:
+      box-shadow var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .article-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-ink-soft);
+    }
+  }
+
+  .article-service-tag {
+    display: inline-flex;
+    padding: 0.2rem 0.6rem;
+    background-color: var(--color-accent-soft);
+    color: var(--color-accent-hover);
+    border-radius: var(--radius-pill);
+    font-size: var(--font-xs);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .article-service-tag:hover { background-color: var(--color-accent); color: #fff; }
+  }
+
+  .article-title {
+    font-size: var(--font-h3);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-top: var(--space-2);
+  }
+
+  .article-title-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .article-title-link:hover { color: var(--color-accent); }
+  }
+
+  .article-excerpt {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    line-height: 1.65;
+  }
+
+  .article-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .article-read-time {
+    font-size: var(--font-xs);
+    color: var(--color-ink-soft);
+  }
+
+  .article-read-link {
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .article-read-link:hover { color: var(--color-accent-hover); }
+  }
+</style>

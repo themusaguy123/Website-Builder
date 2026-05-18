@@ -1,0 +1,74 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import TrustBar from '@/components/TrustBar.astro';
+import ServiceGrid from '@/components/ServiceGrid.astro';
+import HonestyCallout from '@/components/HonestyCallout.astro';
+import ReviewsGrid from '@/components/ReviewsGrid.astro';
+import WhyChooseUs from '@/components/WhyChooseUs.astro';
+import ServiceAreas from '@/components/ServiceAreas.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import FAQ from '@/components/FAQ.astro';
+import StickyMobileCTA from '@/components/StickyMobileCTA.astro';
+import BrandLogoStrip from '@/components/BrandLogoStrip.astro';
+
+const homeFAQ = [
+  {
+    q: 'Do you charge extra for weekend or evening appliance repair?',
+    a: 'No. We charge the same rate every day of the week — mornings, evenings, weekends, and holidays. The price we quote is the price you pay. No surprise fees.',
+  },
+  {
+    q: 'How does the free service call work?',
+    a: 'The service call fee is waived when we complete the repair. If you decide not to proceed after we diagnose the problem, a service call fee applies. We give you a clear quote before starting any work so you can make an informed decision.',
+  },
+  {
+    q: 'Do you carry parts on the truck?',
+    a: 'Yes — we stock common parts for the brands and appliances we see most often. This means most repairs are completed in a single visit. For less common parts, we order and return as quickly as possible.',
+  },
+  {
+    q: 'What brands do you service?',
+    a: 'All major brands including Samsung, LG, Whirlpool, GE, Kenmore, Maytag, Frigidaire, Bosch, KitchenAid, Electrolux, Jenn-Air, Viking, Sub-Zero, Wolf, Thermador, Miele, and many others.',
+  },
+  {
+    q: 'What areas do you serve?',
+    a: 'We serve all of Northern Virginia (Fairfax, Loudoun, Prince William, and Arlington counties), Maryland (Montgomery, Prince George\'s, and Howard counties), and all neighborhoods and quadrants of Washington D.C.',
+  },
+  {
+    q: 'Is there a warranty on repairs?',
+    a: 'Yes. Every repair comes with a warranty on parts and labor. If something isn\'t right after the repair, we come back and make it right.',
+  },
+];
+---
+
+<BaseLayout
+  title="DMV Appliance Repair | Same-Day Service in Virginia, Maryland & DC"
+  description="Trusted appliance repair across the DMV since 2007. Same-day service 7 days a week, no weekend fees. We carry parts on the truck so most repairs are done in one visit. Call now."
+  schemaType="home"
+>
+  <Hero
+    variant="home"
+    headline="Expert Appliance Repair Across the DMV — Same Day, 7 Days a Week"
+    subheadline="Family-owned and serving Northern Virginia, Maryland, and Washington D.C. since 2007. We carry common parts on the truck so most repairs are done in one visit — no waiting for a second appointment."
+    badge="Family-owned since 2007"
+  />
+
+  <TrustBar />
+
+  <ServiceGrid />
+
+  <HonestyCallout />
+
+  <ReviewsGrid />
+
+  <WhyChooseUs />
+
+  <BrandLogoStrip />
+
+  <ServiceAreas />
+
+  <BookingForm />
+
+  <FAQ items={homeFAQ} heading="Common Questions" />
+
+  <StickyMobileCTA />
+</BaseLayout>

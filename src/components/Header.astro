@@ -1,0 +1,423 @@
+---
+const navLinks = [
+  { label: 'Services', href: '/services/' },
+  { label: 'Locations', href: '/locations/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Reviews', href: '/reviews/' },
+  { label: 'Resources', href: '/resources/' },
+];
+
+const phones = [
+  { state: 'DC', number: '202-783-2055', href: 'tel:+12027832055' },
+  { state: 'MD', number: '301-907-6666', href: 'tel:+13019076666' },
+  { state: 'VA', number: '703-866-7776', href: 'tel:+17038667776' },
+];
+---
+
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <!-- Logo -->
+    <a href="/" class="header-logo" aria-label="DMV Appliance Repair — home">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="#FF6B1A"/>
+        <path d="M8 10h16M8 16h10M8 22h7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="22" cy="19" r="4" stroke="#fff" stroke-width="2"/>
+        <path d="M25 22l2.5 2.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span class="header-logo-text">
+        <span class="logo-primary">DMV Appliance</span>
+        <span class="logo-secondary">Repair</span>
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="header-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        {navLinks.map((link) => (
+          <li>
+            <a href={link.href} class="nav-link">{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Phone group (desktop) -->
+    <div class="header-phones" aria-label="Contact phone numbers">
+      {phones.map((p) => (
+        <a href={p.href} class="phone-btn" aria-label={`Call ${p.state}: ${p.number}`}>
+          <span class="phone-state">{p.state}</span>
+          <span class="phone-number">{p.number}</span>
+        </a>
+      ))}
+    </div>
+
+    <!-- Mobile controls -->
+    <div class="mobile-controls">
+      <a href="tel:+17038667776" class="mobile-phone-icon" aria-label="Call us">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+        </svg>
+      </a>
+      <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <nav aria-label="Mobile navigation">
+      <ul class="mobile-nav-list">
+        {navLinks.map((link) => (
+          <li>
+            <a href={link.href} class="mobile-nav-link">{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="mobile-phones">
+      <p class="mobile-phones-label">Call us</p>
+      {phones.map((p) => (
+        <a href={p.href} class="mobile-phone-link">
+          <span class="mobile-phone-state">{p.state}</span>
+          <span class="mobile-phone-num">{p.number}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-slate);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 0 rgba(15,18,22,0);
+    transition: box-shadow var(--duration-base) var(--ease-out);
+  }
+
+  .site-header.scrolled {
+    box-shadow: 0 2px 16px rgba(15,18,22,0.18);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  /* Logo */
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-shrink: 0;
+    text-decoration: none;
+    transition: opacity var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .header-logo:hover { opacity: 0.85; }
+  }
+
+  .header-logo:active { opacity: 0.7; }
+
+  .header-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .logo-primary {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+
+  .logo-secondary {
+    font-size: var(--font-small);
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* Nav */
+  .header-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    transition:
+      color var(--duration-base) var(--ease-out),
+      background-color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover {
+      color: #fff;
+      background-color: rgba(255,255,255,0.08);
+    }
+  }
+
+  /* Phone group */
+  .header-phones {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+  }
+
+  .phone-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-md);
+    background-color: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    text-decoration: none;
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  .phone-btn:active { transform: scale(0.97); }
+
+  @media (hover: hover) and (pointer: fine) {
+    .phone-btn:hover {
+      background-color: rgba(255,255,255,0.13);
+    }
+  }
+
+  .phone-state {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .phone-number {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  /* Mobile controls */
+  .mobile-controls {
+    display: none;
+    align-items: center;
+    gap: var(--space-3);
+    margin-left: auto;
+  }
+
+  .mobile-phone-icon {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    transition:
+      opacity var(--duration-base) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  .mobile-phone-icon:active { transform: scale(0.93); }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--duration-base) var(--ease-out);
+  }
+
+  .hamburger:active { background-color: rgba(255,255,255,0.1); }
+
+  .hamburger-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: transform var(--duration-base) var(--ease-out), opacity var(--duration-base) var(--ease-out);
+  }
+
+  .hamburger[aria-expanded="true"] .hamburger-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger[aria-expanded="true"] .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger[aria-expanded="true"] .hamburger-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed;
+    inset: var(--header-height) 0 0 0;
+    background-color: var(--color-slate);
+    z-index: 99;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+    pointer-events: none;
+    transition:
+      opacity var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+
+  .mobile-menu.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu {
+      transform: none;
+      transition: opacity var(--duration-base) var(--ease-out);
+    }
+  }
+
+  .mobile-menu-inner {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-bottom: var(--space-8);
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: var(--space-4);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    border-radius: var(--radius-md);
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out);
+  }
+
+  .mobile-nav-link:active {
+    background-color: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .mobile-phones { border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-6); }
+
+  .mobile-phones-label {
+    font-size: var(--font-xs);
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-3);
+  }
+
+  .mobile-phone-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  .mobile-phone-link:active {
+    background-color: rgba(255,255,255,0.08);
+    transform: scale(0.98);
+  }
+
+  .mobile-phone-state {
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .mobile-phone-num {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  /* Responsive breakpoints */
+  @media (max-width: 1024px) {
+    .header-nav { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .header-phones { display: none; }
+    .mobile-controls { display: flex; }
+  }
+</style>
+
+<script>
+  const header = document.getElementById('site-header');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  // Scroll shadow
+  window.addEventListener('scroll', () => {
+    header?.classList.toggle('scrolled', window.scrollY > 4);
+  }, { passive: true });
+
+  // Hamburger toggle
+  hamburger?.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', String(!isOpen));
+    mobileMenu?.classList.toggle('open', !isOpen);
+    mobileMenu?.setAttribute('aria-hidden', String(isOpen));
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+
+  // Close on link click
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      hamburger?.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    });
+  });
+</script>

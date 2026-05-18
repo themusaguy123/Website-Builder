@@ -1,0 +1,145 @@
+---
+interface Props {
+  city?: string;
+}
+
+const { city } = Astro.props;
+const loc = city ? ` in ${city}` : '';
+
+const reasons = [
+  {
+    num: '01',
+    title: 'We Come Prepared',
+    body: `Our technicians carry common parts on the truck, which means most repairs are completed in a single visit${loc}. No waiting days for a part to ship — we fix it and get out of your way.`,
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" stroke="currentColor" stroke-width="2"/><line x1="12" y1="12" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="10" y1="14" x2="14" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+  },
+  {
+    num: '02',
+    title: '30-Minute Callback Guarantee',
+    body: `Submit a request or leave a voicemail and we'll get back to you within 30 minutes. Your fridge isn't going to wait${loc}, and neither should you.`,
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+  },
+  {
+    num: '03',
+    title: 'Family-Owned Since 2007',
+    body: `We're not a franchise or a dispatch service. DMV Appliance Repair is a local, family-run business that's been serving${loc ? loc + ' and' : ''} your neighbors for over 18 years. When you call, you're talking to people who care.`,
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2"/><polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" stroke-width="2"/></svg>`,
+  },
+  {
+    num: '04',
+    title: 'No Surprise Fees — Ever',
+    body: `Same rate for evenings, weekends, and holidays. The price we quote is the price you pay. Every repair includes a satisfaction guarantee and a warranty on parts and labor.`,
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"/><polyline points="9 12 11 14 15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  },
+  {
+    num: '05',
+    title: '$60 Off Every Completed Repair',
+    body: `We offer a $60 discount on every completed repair, and your service call is free when we do the work. Honest pricing from a team that would rather earn your trust than nickel-and-dime you.`,
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+  },
+];
+---
+
+<section class="section why-section">
+  <div class="container">
+    <div class="why-header reveal">
+      <h2>Why DMV Homeowners Choose Us{city ? ` in ${city}` : ''}</h2>
+      <p class="why-sub">
+        We've been in your neighborhood since 2007. Here's what we do differently.
+      </p>
+    </div>
+
+    <div class="why-grid">
+      {reasons.map((r, i) => (
+        <div class={`why-item reveal`} style={`transition-delay: ${i * 60}ms`}>
+          <div class="why-icon" aria-hidden="true" set:html={r.icon} />
+          <div class="why-body">
+            <span class="why-num" aria-hidden="true">{r.num}</span>
+            <h3 class="why-title">{r.title}</h3>
+            <p class="why-text">{r.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-section { background-color: var(--color-bg); }
+
+  .why-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .why-header h2 { margin-bottom: var(--space-3); }
+
+  .why-sub {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    max-width: 44ch;
+    margin-inline: auto;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 900px) {
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .why-grid { grid-template-columns: 1fr; }
+  }
+
+  .why-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1.5px solid var(--color-border);
+    background-color: #fff;
+  }
+
+  .why-icon {
+    width: 44px;
+    height: 44px;
+    background-color: var(--color-bg-soft);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .why-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .why-num {
+    font-size: var(--font-xs);
+    font-weight: 500;
+    color: var(--color-ink-soft);
+    letter-spacing: 0.06em;
+  }
+
+  .why-title {
+    font-size: var(--font-h3);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .why-text {
+    font-size: var(--font-small);
+    color: var(--color-ink-muted);
+    line-height: 1.65;
+    max-width: 38ch;
+  }
+</style>

@@ -1,0 +1,282 @@
+---
+const services = [
+  { label: 'Refrigerator Repair', href: '/services/refrigerator-repair/' },
+  { label: 'Washing Machine Repair', href: '/services/washing-machine-repair/' },
+  { label: 'Dryer Repair', href: '/services/dryer-repair/' },
+  { label: 'Dishwasher Repair', href: '/services/dishwasher-repair/' },
+  { label: 'Oven & Range Repair', href: '/services/oven-and-range-repair/' },
+  { label: 'Cooktop & Stove Repair', href: '/services/cooktop-and-stove-repair/' },
+  { label: 'Garbage Disposal Repair', href: '/services/garbage-disposal-repair/' },
+  { label: 'Ice Maker Repair', href: '/services/ice-maker-repair/' },
+  { label: 'Microwave Repair', href: '/services/microwave-repair/' },
+];
+
+const vaLocations = [
+  { label: 'Arlington', href: '/locations/arlington-va/' },
+  { label: 'Alexandria', href: '/locations/alexandria-va/' },
+  { label: 'Fairfax', href: '/locations/fairfax-va/' },
+  { label: 'Chantilly', href: '/locations/chantilly-va/' },
+  { label: 'Reston', href: '/locations/reston-va/' },
+  { label: 'Herndon', href: '/locations/herndon-va/' },
+  { label: 'Ashburn', href: '/locations/ashburn-va/' },
+  { label: 'Vienna', href: '/locations/vienna-va/' },
+  { label: 'McLean', href: '/locations/mclean-va/' },
+  { label: 'Springfield', href: '/locations/springfield-va/' },
+];
+
+const mdLocations = [
+  { label: 'Bethesda', href: '/locations/bethesda-md/' },
+  { label: 'Silver Spring', href: '/locations/silver-spring-md/' },
+  { label: 'Rockville', href: '/locations/rockville-md/' },
+  { label: 'Bowie', href: '/locations/bowie-md/' },
+  { label: 'Germantown', href: '/locations/germantown-md/' },
+  { label: 'Potomac', href: '/locations/potomac-md/' },
+  { label: 'Chevy Chase', href: '/locations/chevy-chase-md/' },
+];
+
+const phones = [
+  { state: 'Virginia', number: '703-866-7776', href: 'tel:+17038667776' },
+  { state: 'Maryland', number: '301-907-6666', href: 'tel:+13019076666' },
+  { state: 'Washington D.C.', number: '202-783-2055', href: 'tel:+12027832055' },
+];
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <!-- Brand column -->
+    <div class="footer-brand">
+      <a href="/" class="footer-logo" aria-label="DMV Appliance Repair home">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#FF6B1A"/>
+          <path d="M8 10h16M8 16h10M8 22h7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="22" cy="19" r="4" stroke="#fff" stroke-width="2"/>
+          <path d="M25 22l2.5 2.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <span class="footer-logo-name">DMV Appliance Repair</span>
+      </a>
+      <p class="footer-tagline">
+        Honest, affordable appliance repair for homeowners across Virginia, Maryland, and D.C. Family-owned since 2007.
+      </p>
+      <div class="footer-phones">
+        {phones.map((p) => (
+          <a href={p.href} class="footer-phone-link">
+            <span class="footer-phone-state">{p.state}</span>
+            <span class="footer-phone-num">{p.number}</span>
+          </a>
+        ))}
+        <a href="mailto:Info@dmvappliance.com" class="footer-email">Info@dmvappliance.com</a>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div class="footer-col">
+      <h3 class="footer-col-heading">Services</h3>
+      <ul class="footer-links">
+        {services.map((s) => (
+          <li><a href={s.href} class="footer-link">{s.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Virginia locations -->
+    <div class="footer-col">
+      <h3 class="footer-col-heading">Virginia</h3>
+      <ul class="footer-links">
+        {vaLocations.map((l) => (
+          <li><a href={l.href} class="footer-link">{l.label}</a></li>
+        ))}
+        <li><a href="/locations/" class="footer-link footer-link--more">All locations →</a></li>
+      </ul>
+    </div>
+
+    <!-- Maryland + DC -->
+    <div class="footer-col">
+      <h3 class="footer-col-heading">Maryland & D.C.</h3>
+      <ul class="footer-links">
+        {mdLocations.map((l) => (
+          <li><a href={l.href} class="footer-link">{l.label}</a></li>
+        ))}
+        <li><a href="/locations/washington-dc/" class="footer-link">Washington D.C.</a></li>
+      </ul>
+
+      <h3 class="footer-col-heading" style="margin-top: var(--space-6)">Company</h3>
+      <ul class="footer-links">
+        <li><a href="/about/" class="footer-link">About Us</a></li>
+        <li><a href="/reviews/" class="footer-link">Reviews</a></li>
+        <li><a href="/brands/" class="footer-link">Brands We Service</a></li>
+        <li><a href="/contact/" class="footer-link">Contact</a></li>
+        <li><a href="/resources/" class="footer-link">Resources</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p class="footer-copyright">© 2025 DMV Appliance Repair LLC. All Rights Reserved.</p>
+      <p class="footer-disclaimer">
+        Service-area business — residential appliance repair in Northern Virginia, Maryland, and Washington D.C.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-slate);
+    color: rgba(255,255,255,0.7);
+    padding-top: var(--space-16);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    gap: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  @media (max-width: 1024px) {
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  /* Brand col */
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    text-decoration: none;
+    margin-bottom: var(--space-4);
+    transition: opacity var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .footer-logo:hover { opacity: 0.8; }
+  }
+
+  .footer-logo-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .footer-tagline {
+    font-size: var(--font-small);
+    line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: var(--space-6);
+    max-width: 28ch;
+  }
+
+  .footer-phones {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .footer-phone-link {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    text-decoration: none;
+    transition: opacity var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .footer-phone-link:hover { opacity: 0.85; }
+  }
+
+  .footer-phone-state {
+    font-size: var(--font-xs);
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    min-width: 7ch;
+  }
+
+  .footer-phone-num {
+    font-size: var(--font-body);
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .footer-email {
+    font-size: var(--font-small);
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    margin-top: var(--space-2);
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .footer-email:hover { color: rgba(255,255,255,0.85); }
+  }
+
+  /* Col headings */
+  .footer-col-heading {
+    font-size: var(--font-xs);
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-3);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    list-style: none;
+  }
+
+  .footer-link {
+    font-size: var(--font-small);
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .footer-link:hover { color: rgba(255,255,255,0.9); }
+  }
+
+  .footer-link--more {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  /* Bottom bar */
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-block: var(--space-6);
+  }
+
+  .footer-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .footer-copyright {
+    font-size: var(--font-xs);
+    color: rgba(255,255,255,0.35);
+    max-width: none;
+  }
+
+  .footer-disclaimer {
+    font-size: var(--font-xs);
+    color: rgba(255,255,255,0.25);
+    max-width: none;
+  }
+</style>

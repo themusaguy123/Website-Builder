@@ -1,0 +1,119 @@
+---
+interface Props {
+  name: string;
+  slug: string;
+  description: string;
+  icon: string;
+  city?: string;
+}
+
+const { name, slug, description, icon, city } = Astro.props;
+const href = city
+  ? `/services/${slug}/#booking`
+  : `/services/${slug}/`;
+---
+
+<a href={href} class="service-card" aria-label={`${name}${city ? ` in ${city}` : ''}`}>
+  <div class="service-card-icon" aria-hidden="true" set:html={icon} />
+  <div class="service-card-body">
+    <h3 class="service-card-name">{name}{city ? ` in ${city}` : ''}</h3>
+    <p class="service-card-desc">{description}</p>
+  </div>
+  <div class="service-card-footer">
+    <span class="badge badge--soft">Same-day available</span>
+    <svg class="service-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</a>
+
+<style>
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background-color: #fff;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition:
+      transform var(--duration-base) var(--ease-out),
+      box-shadow var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .service-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(15, 18, 22, 0.08);
+      border-color: var(--color-ink-soft);
+    }
+  }
+
+  .service-card:active {
+    transform: scale(0.97);
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .service-card-icon {
+    width: 44px;
+    height: 44px;
+    background-color: var(--color-accent-soft);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-hover);
+    flex-shrink: 0;
+  }
+
+  .service-card-body {
+    flex: 1;
+  }
+
+  .service-card-name {
+    font-size: var(--font-h3);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: var(--space-2);
+    line-height: 1.25;
+  }
+
+  .service-card-desc {
+    font-size: var(--font-small);
+    color: var(--color-ink-muted);
+    line-height: 1.55;
+    max-width: 32ch;
+  }
+
+  .service-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .service-card-arrow {
+    color: var(--color-ink-soft);
+    transition: transform var(--duration-base) var(--ease-out), color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .service-card:hover .service-card-arrow {
+      transform: translateX(3px);
+      color: var(--color-accent);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-card,
+    .service-card:active {
+      transition: box-shadow var(--duration-base) var(--ease-out), border-color var(--duration-base) var(--ease-out);
+      transform: none;
+    }
+    .service-card-arrow { transition: none; }
+  }
+</style>

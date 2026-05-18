@@ -1,0 +1,178 @@
+---
+const areas = {
+  VA: {
+    label: 'Northern Virginia',
+    cities: [
+      { name: 'Arlington', slug: 'arlington-va' },
+      { name: 'Alexandria', slug: 'alexandria-va' },
+      { name: 'Fairfax', slug: 'fairfax-va' },
+      { name: 'Springfield', slug: 'springfield-va' },
+      { name: 'Annandale', slug: 'annandale-va' },
+      { name: 'Falls Church', slug: 'falls-church-va' },
+      { name: 'Burke', slug: 'burke-va' },
+      { name: 'Reston', slug: 'reston-va' },
+      { name: 'Herndon', slug: 'herndon-va' },
+      { name: 'Vienna', slug: 'vienna-va' },
+      { name: 'McLean', slug: 'mclean-va' },
+      { name: 'Centreville', slug: 'centreville-va' },
+      { name: 'Chantilly', slug: 'chantilly-va' },
+      { name: 'Woodbridge', slug: 'woodbridge-va' },
+      { name: 'Ashburn', slug: 'ashburn-va' },
+      { name: 'Sterling', slug: 'sterling-va' },
+      { name: 'Lorton', slug: 'lorton-va' },
+      { name: 'Manassas', slug: 'manassas-va' },
+    ],
+    note: 'Fairfax · Loudoun · Prince William · Arlington',
+  },
+  MD: {
+    label: 'Maryland',
+    cities: [
+      { name: 'Bethesda', slug: 'bethesda-md' },
+      { name: 'Silver Spring', slug: 'silver-spring-md' },
+      { name: 'Rockville', slug: 'rockville-md' },
+      { name: 'Bowie', slug: 'bowie-md' },
+      { name: 'College Park', slug: 'college-park-md' },
+      { name: 'Germantown', slug: 'germantown-md' },
+      { name: 'Potomac', slug: 'potomac-md' },
+      { name: 'Chevy Chase', slug: 'chevy-chase-md' },
+      { name: 'Hyattsville', slug: 'hyattsville-md' },
+      { name: 'Takoma Park', slug: 'takoma-park-md' },
+    ],
+    note: 'Montgomery · Prince George\'s · Howard',
+  },
+  DC: {
+    label: 'Washington D.C.',
+    cities: [
+      { name: 'Georgetown', slug: 'washington-dc' },
+      { name: 'Capitol Hill', slug: 'washington-dc' },
+      { name: 'Dupont Circle', slug: 'washington-dc' },
+      { name: 'Adams Morgan', slug: 'washington-dc' },
+      { name: 'Tenleytown', slug: 'washington-dc' },
+      { name: 'Brookland', slug: 'washington-dc' },
+      { name: 'All NW · NE · SW · SE', slug: 'washington-dc' },
+    ],
+    note: 'All quadrants & neighborhoods',
+  },
+};
+---
+
+<section class="section service-areas-section">
+  <div class="container">
+    <div class="areas-header reveal">
+      <h2>Our Service Area</h2>
+      <p class="areas-sub">
+        We cover the entire DMV metro — Northern Virginia, Maryland, and Washington D.C. Same-day service, every day of the week.
+      </p>
+    </div>
+
+    <div class="areas-grid">
+      {Object.entries(areas).map(([key, area], i) => (
+        <div class={`areas-col reveal`} style={`transition-delay: ${i * 80}ms`}>
+          <h3 class="areas-col-heading">
+            <span class="areas-state-badge">{key}</span>
+            {area.label}
+          </h3>
+          <div class="areas-chips">
+            {area.cities.map((city) => (
+              <a href={`/locations/${city.slug}/`} class="area-chip">
+                {city.name}
+              </a>
+            ))}
+          </div>
+          <p class="areas-counties">{area.note}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-areas-section { background-color: var(--color-bg-soft); }
+
+  .areas-header {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  .areas-header h2 { margin-bottom: var(--space-3); }
+
+  .areas-sub {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    max-width: 52ch;
+    margin-inline: auto;
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .areas-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+  }
+
+  .areas-col-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-body);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: var(--space-4);
+  }
+
+  .areas-state-badge {
+    font-size: var(--font-xs);
+    font-weight: 600;
+    background-color: var(--color-accent);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    padding: 0.15rem 0.4rem;
+    letter-spacing: 0.04em;
+  }
+
+  .areas-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .area-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-pill);
+    font-size: var(--font-xs);
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    background-color: #fff;
+    border: 1.5px solid var(--color-border);
+    text-decoration: none;
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .area-chip:hover {
+      background-color: var(--color-accent-soft);
+      color: var(--color-ink);
+      border-color: transparent;
+    }
+  }
+
+  .area-chip:active {
+    transform: scale(0.97);
+  }
+
+  .areas-counties {
+    font-size: var(--font-xs);
+    color: var(--color-ink-soft);
+    max-width: none;
+  }
+</style>

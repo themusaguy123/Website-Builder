@@ -1,0 +1,80 @@
+---
+interface Props {
+  quote: string;
+  author: string;
+  featured?: boolean;
+}
+
+const { quote, author, featured = false } = Astro.props;
+---
+
+<div class={`review-card${featured ? ' review-card--featured' : ''}`}>
+  <div class="review-stars" aria-label="5 out of 5 stars">
+    {Array.from({ length: 5 }).map(() => (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    ))}
+  </div>
+  <blockquote class="review-quote">
+    <p>"{quote}"</p>
+    <footer>
+      <cite class="review-author">{author}</cite>
+      <span class="review-source">Thumbtack review</span>
+    </footer>
+  </blockquote>
+</div>
+
+<style>
+  .review-card {
+    background-color: #fff;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .review-card--featured {
+    border-color: var(--color-accent-soft);
+    background-color: var(--color-accent-soft);
+  }
+
+  .review-stars {
+    display: flex;
+    gap: 2px;
+    color: #F59E0B;
+  }
+
+  .review-quote p {
+    font-size: var(--font-body);
+    line-height: 1.65;
+    color: var(--color-ink-muted);
+    font-style: italic;
+    max-width: 44ch;
+  }
+
+  .review-card--featured .review-quote p {
+    color: var(--color-ink);
+  }
+
+  .review-quote footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-top: var(--space-4);
+  }
+
+  .review-author {
+    font-size: var(--font-small);
+    font-weight: 600;
+    color: var(--color-ink);
+    font-style: normal;
+  }
+
+  .review-source {
+    font-size: var(--font-xs);
+    color: var(--color-ink-soft);
+  }
+</style>

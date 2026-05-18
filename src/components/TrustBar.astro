@@ -1,0 +1,101 @@
+---
+const items = [
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    label: 'Serving the DMV',
+    sub: 'Since 2007',
+  },
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="currentColor" fill-opacity="0.15"/></svg>`,
+    label: '4.8 ★ on Thumbtack',
+    sub: '20+ reviews',
+  },
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    label: 'Same-Day Service',
+    sub: '7 days a week',
+  },
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    label: 'Warranty on Every Repair',
+    sub: 'Parts & labor',
+  },
+];
+---
+
+<div class="trust-bar">
+  <div class="container trust-bar-inner">
+    {items.map((item) => (
+      <div class="trust-item">
+        <span class="trust-icon" set:html={item.icon} />
+        <div class="trust-text">
+          <span class="trust-label">{item.label}</span>
+          <span class="trust-sub">{item.sub}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .trust-bar {
+    background-color: #fff;
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-4);
+  }
+
+  .trust-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .trust-icon {
+    color: var(--color-accent);
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .trust-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .trust-label {
+    font-size: var(--font-small);
+    font-weight: 600;
+    color: var(--color-ink);
+    line-height: 1.2;
+  }
+
+  .trust-sub {
+    font-size: var(--font-xs);
+    color: var(--color-ink-soft);
+    line-height: 1.2;
+  }
+
+  @media (max-width: 768px) {
+    .trust-bar-inner {
+      justify-content: center;
+      gap: var(--space-6);
+    }
+
+    .trust-item:nth-child(3),
+    .trust-item:nth-child(4) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .trust-item:nth-child(2) { display: none; }
+  }
+</style>

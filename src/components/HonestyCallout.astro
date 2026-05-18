@@ -1,0 +1,212 @@
+---
+// The single strongest authenticity asset — featured as its own block
+---
+
+<section class="honesty-callout section--slate">
+  <div class="container honesty-inner">
+    <div class="honesty-content reveal">
+      <div class="honesty-eyebrow">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Why customers trust us</span>
+      </div>
+
+      <h2 class="honesty-headline">
+        "We told them not to buy the expensive part."
+      </h2>
+
+      <blockquote class="honesty-quote">
+        <p>
+          "DMV Appliance was great. They inspected our washer for free. Showed us what was wrong.
+          The service tech said, <em>'I can't let you buy that, it's too expensive'</em> — so he fixed
+          the part instead of replacing it."
+        </p>
+        <footer>
+          <cite>— Thumbtack review</cite>
+        </footer>
+      </blockquote>
+
+      <p class="honesty-context">
+        Pir has been repairing appliances in the DMV since 2007. He's seen every model, every failure mode.
+        When a repair doesn't make financial sense, he tells you. No upselling. No manufactured urgency.
+        Just an honest answer so you can make the right call for your home.
+      </p>
+
+      <div class="honesty-actions">
+        <a href="#booking" class="btn btn--primary">Request a Callback</a>
+        <a href="/about/" class="honesty-about-link">
+          Learn about our approach
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="honesty-stat-col reveal" style="transition-delay: 120ms">
+      <div class="honesty-stats">
+        <div class="honesty-stat">
+          <span class="honesty-stat-num">18+</span>
+          <span class="honesty-stat-label">Years serving the DMV</span>
+        </div>
+        <div class="honesty-stat">
+          <span class="honesty-stat-num">4.8★</span>
+          <span class="honesty-stat-label">on Thumbtack</span>
+        </div>
+        <div class="honesty-stat">
+          <span class="honesty-stat-num">$60</span>
+          <span class="honesty-stat-label">off every completed repair</span>
+        </div>
+        <div class="honesty-stat">
+          <span class="honesty-stat-num">1 visit</span>
+          <span class="honesty-stat-label">Most repairs, no callbacks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .honesty-callout {
+    background-color: var(--color-slate);
+    padding-block: var(--space-20);
+  }
+
+  .honesty-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .honesty-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+  }
+
+  /* Eyebrow */
+  .honesty-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-xs);
+    font-weight: 500;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-5);
+  }
+
+  /* Headline */
+  .honesty-headline {
+    font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Quote */
+  .honesty-quote {
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+
+  .honesty-quote p {
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+    max-width: 52ch;
+  }
+
+  .honesty-quote em {
+    color: #fff;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .honesty-quote footer {
+    margin-top: var(--space-3);
+  }
+
+  .honesty-quote cite {
+    font-size: var(--font-small);
+    color: rgba(255,255,255,0.4);
+    font-style: normal;
+  }
+
+  /* Context paragraph */
+  .honesty-context {
+    font-size: var(--font-body);
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin-bottom: var(--space-8);
+    max-width: 56ch;
+  }
+
+  /* Actions */
+  .honesty-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+  }
+
+  .honesty-about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition:
+      color var(--duration-base) var(--ease-out),
+      gap var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .honesty-about-link:hover {
+      color: rgba(255,255,255,0.9);
+      gap: var(--space-2);
+    }
+  }
+
+  /* Stat column */
+  .honesty-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .honesty-stat {
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: var(--radius-md);
+    padding: var(--space-5) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .honesty-stat-num {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .honesty-stat-label {
+    font-size: var(--font-xs);
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
+    max-width: none;
+  }
+</style>

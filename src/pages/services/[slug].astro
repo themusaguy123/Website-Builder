@@ -1,0 +1,429 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import TrustBar from '@/components/TrustBar.astro';
+import ReviewCard from '@/components/ReviewCard.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import FAQ from '@/components/FAQ.astro';
+import StickyMobileCTA from '@/components/StickyMobileCTA.astro';
+import ServiceAreas from '@/components/ServiceAreas.astro';
+import { services } from '@/data/services';
+import { brands } from '@/data/brands';
+import { reviews } from '@/data/reviews';
+import { cities } from '@/data/cities';
+
+export async function getStaticPaths() {
+  return services.map((s) => ({
+    params: { slug: s.slug },
+    props: { service: s },
+  }));
+}
+
+const { service } = Astro.props;
+
+const featuredReviews = reviews.slice(0, 3);
+
+const nearbyLocations = cities.slice(0, 8).map((c) => ({
+  name: c.name,
+  slug: c.slug,
+  state: c.state,
+}));
+---
+
+<BaseLayout
+  title={`${service.name} in DC, MD & Virginia | DMV Appliance Repair`}
+  description={`Professional ${service.name.toLowerCase()} in Northern Virginia, Maryland, and Washington D.C. Same-day service 7 days a week. Family-owned since 2007. Call now.`}
+  schemaType="service"
+  schemaMeta={{
+    serviceName: service.name,
+    serviceDescription: service.intro,
+    url: `https://dmvappliance.com/services/${service.slug}/`,
+  }}
+>
+  <Hero
+    variant="service"
+    headline={`${service.name} — Same Day, 7 Days a Week`}
+    subheadline={service.intro}
+    badge="Same-day available"
+  />
+
+  <TrustBar />
+
+  <!-- Service intro -->
+  <section class="section service-intro-section">
+    <div class="container service-intro-inner">
+      <div class="service-intro-content">
+        <h2>Common {service.name} Problems We Fix</h2>
+        <p class="service-intro-lead">
+          If your appliance is showing any of these symptoms, call us at{' '}
+          <a href="tel:+17038667776" class="inline-phone">703-866-7776</a>{' '}
+          or request a callback below. We\'ll diagnose it and give you a straight answer.
+        </p>
+        <ul class="problem-list" role="list">
+          {service.commonProblems.map((problem) => (
+            <li class="problem-item">
+              <span class="problem-check" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>{problem}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="service-ctas">
+          <a href="#booking" class="btn btn--primary">Request a Callback</a>
+          <a href="tel:+17038667776" class="btn btn--outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+            </svg>
+            VA: 703-866-7776
+          </a>
+          <a href="tel:+13019076666" class="btn btn--outline">MD: 301-907-6666</a>
+        </div>
+      </div>
+
+      <aside class="service-trust-aside">
+        <div class="trust-box">
+          <h3 class="trust-box-heading">Why Choose DMV Appliance Repair</h3>
+          <ul class="trust-list" role="list">
+            <li class="trust-list-item">
+              <span class="trust-dot" aria-hidden="true"></span>
+              Family-owned since 2007 — not a dispatch service
+            </li>
+            <li class="trust-list-item">
+              <span class="trust-dot" aria-hidden="true"></span>
+              Parts on the truck — most repairs done in one visit
+            </li>
+            <li class="trust-list-item">
+              <span class="trust-dot" aria-hidden="true"></span>
+              30-minute callback guarantee
+            </li>
+            <li class="trust-list-item">
+              <span class="trust-dot" aria-hidden="true"></span>
+              Same rate 7 days a week — no weekend fees
+            </li>
+            <li class="trust-list-item">
+              <span class="trust-dot" aria-hidden="true"></span>
+              $60 off every completed repair
+            </li>
+            <li class="trust-list-item">
+              <span class="trust-dot" aria-hidden="true"></span>
+              Warranty on parts and labor
+            </li>
+            <li class="trust-list-item">
+              <span class="trust-dot" aria-hidden="true"></span>
+              4.8★ on Thumbtack · 20+ reviews
+            </li>
+          </ul>
+        </div>
+        <div class="honesty-aside-box">
+          <blockquote>
+            <p>"The tech said, <em>'I can't let you buy that, it's too expensive'</em> — so he fixed the part instead of replacing it."</p>
+            <cite>— Thumbtack review</cite>
+          </blockquote>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Brands we service for this appliance -->
+  <section class="section section--soft brands-section">
+    <div class="container">
+      <h2 class="brands-heading reveal">Brands We Service</h2>
+      <p class="brands-sub reveal">
+        We service all major {service.name.toLowerCase()} brands.
+      </p>
+      <div class="brands-flex reveal" style="transition-delay: 60ms">
+        {brands.map((brand) => (
+          <span class="brand-tag">{brand}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer reviews -->
+  <section class="section reviews-strip-section">
+    <div class="container">
+      <h2 class="reviews-strip-heading reveal">What Customers Say</h2>
+      <div class="reviews-strip-grid">
+        {featuredReviews.map((review, i) => (
+          <div class="reveal" style={`transition-delay: ${i * 50}ms`}>
+            <ReviewCard quote={review.quote} author={review.author} featured={review.featured} />
+          </div>
+        ))}
+      </div>
+      <div class="reviews-strip-cta reveal">
+        <a href="/reviews/" class="btn btn--outline">See all reviews</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location links for this service -->
+  <section class="section section--soft locations-for-service">
+    <div class="container">
+      <h2 class="reveal">{service.name} Near You</h2>
+      <p class="locations-sub reveal">
+        We provide same-day {service.name.toLowerCase()} across the entire DMV metro.
+      </p>
+      <div class="locations-chips reveal" style="transition-delay: 60ms">
+        {nearbyLocations.map((loc) => (
+          <a href={`/locations/${loc.slug}/`} class="location-chip">
+            {loc.name}, {loc.state}
+          </a>
+        ))}
+        <a href="/locations/" class="location-chip location-chip--more">All locations →</a>
+      </div>
+    </div>
+  </section>
+
+  <BookingForm />
+
+  <FAQ items={service.faq} heading={`${service.name} FAQ`} />
+
+  <StickyMobileCTA />
+</BaseLayout>
+
+<style>
+  /* ── Service intro section ── */
+  .service-intro-section { background-color: var(--color-bg); }
+
+  .service-intro-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .service-intro-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .service-intro-content h2 {
+    font-size: var(--font-h2);
+    margin-bottom: var(--space-4);
+  }
+
+  .service-intro-lead {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .inline-phone {
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .inline-phone:hover { color: var(--color-accent-hover); }
+  }
+
+  .problem-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .problem-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    line-height: 1.5;
+  }
+
+  .problem-check {
+    width: 22px;
+    height: 22px;
+    background-color: var(--color-success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .service-ctas {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* ── Trust aside ── */
+  .trust-box {
+    background-color: var(--color-bg-soft);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    margin-bottom: var(--space-4);
+  }
+
+  .trust-box-heading {
+    font-size: var(--font-h3);
+    margin-bottom: var(--space-4);
+    color: var(--color-ink);
+  }
+
+  .trust-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .trust-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--font-small);
+    color: var(--color-ink-muted);
+    line-height: 1.5;
+  }
+
+  .trust-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .honesty-aside-box {
+    background-color: var(--color-accent-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+
+  .honesty-aside-box blockquote p {
+    font-size: var(--font-small);
+    font-style: italic;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-2);
+  }
+
+  .honesty-aside-box blockquote em {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .honesty-aside-box cite {
+    font-size: var(--font-xs);
+    color: var(--color-ink-soft);
+    font-style: normal;
+  }
+
+  /* ── Brands section ── */
+  .brands-section { padding-block: var(--space-16); }
+
+  .brands-heading { margin-bottom: var(--space-2); }
+
+  .brands-sub {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .brands-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .brand-tag {
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-pill);
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    background-color: #fff;
+    border: 1.5px solid var(--color-border);
+  }
+
+  /* ── Reviews strip ── */
+  .reviews-strip-section { background-color: var(--color-bg); }
+
+  .reviews-strip-heading { margin-bottom: var(--space-8); }
+
+  .reviews-strip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    margin-bottom: var(--space-8);
+  }
+
+  @media (max-width: 860px) {
+    .reviews-strip-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .reviews-strip-grid { grid-template-columns: 1fr; }
+  }
+
+  .reviews-strip-cta {
+    display: flex;
+  }
+
+  /* ── Locations for service ── */
+  .locations-for-service { background-color: var(--color-bg-soft); }
+
+  .locations-for-service h2 { margin-bottom: var(--space-3); }
+
+  .locations-sub {
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .locations-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .location-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-pill);
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--color-ink-muted);
+    background-color: #fff;
+    border: 1.5px solid var(--color-border);
+    text-decoration: none;
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .location-chip:hover {
+      background-color: var(--color-accent-soft);
+      color: var(--color-ink);
+      border-color: transparent;
+    }
+  }
+
+  .location-chip:active { transform: scale(0.97); }
+
+  .location-chip--more {
+    color: var(--color-accent);
+    font-weight: 600;
+    background-color: var(--color-accent-soft);
+    border-color: transparent;
+  }
+</style>

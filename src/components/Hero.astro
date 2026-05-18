@@ -1,0 +1,344 @@
+---
+interface Props {
+  variant?: 'home' | 'service' | 'location' | 'contact';
+  headline: string;
+  subheadline: string;
+  phone?: string;
+  phoneHref?: string;
+  badge?: string;
+  showPhoneGroup?: boolean;
+}
+
+const {
+  variant = 'home',
+  headline,
+  subheadline,
+  badge,
+  showPhoneGroup = false,
+} = Astro.props;
+
+const phones = [
+  { state: 'DC', number: '202-783-2055', href: 'tel:+12027832055' },
+  { state: 'MD', number: '301-907-6666', href: 'tel:+13019076666' },
+  { state: 'VA', number: '703-866-7776', href: 'tel:+17038667776' },
+];
+---
+
+<section class={`hero hero--${variant}`}>
+  <div class="container hero-inner">
+    <div class="hero-content">
+      {badge && (
+        <div class="hero-badge">
+          <span class="badge badge--soft">{badge}</span>
+        </div>
+      )}
+
+      <h1 class="hero-headline">{headline}</h1>
+      <p class="hero-sub">{subheadline}</p>
+
+      <div class="hero-actions">
+        {variant === 'home' ? (
+          <>
+            <div class="hero-phones" aria-label="Call us">
+              {phones.map((p) => (
+                <a href={p.href} class="hero-phone-btn" aria-label={`Call ${p.state}: ${p.number}`}>
+                  <span class="hero-phone-state">{p.state}</span>
+                  <span class="hero-phone-num">{p.number}</span>
+                </a>
+              ))}
+            </div>
+            <a href="#booking" class="btn btn--outline hero-form-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Request a callback
+            </a>
+          </>
+        ) : (
+          <div class="hero-cta-row">
+            <a href="#booking" class="btn btn--primary">Request a Callback</a>
+            <a href="tel:+17038667776" class="btn btn--outline">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+              </svg>
+              703-866-7776
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+
+    {variant === 'home' && (
+      <div class="hero-image-wrap" aria-hidden="true">
+        <div class="hero-image-container">
+          <img
+            src="/images/van/hero-van.jpg"
+            alt="DMV Appliance Repair service van"
+            class="hero-image"
+            width="580"
+            height="420"
+            loading="eager"
+            fetchpriority="high"
+            onerror="this.parentElement.classList.add('hero-image-placeholder')"
+          />
+          <div class="hero-image-fallback" aria-hidden="true">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="64" height="64" rx="16" fill="#E4E6E9"/>
+              <path d="M12 44h40M12 44V30l8-12h24l8 12v14" stroke="#8A8F95" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="20" cy="44" r="5" stroke="#8A8F95" stroke-width="2.5"/>
+              <circle cx="44" cy="44" r="5" stroke="#8A8F95" stroke-width="2.5"/>
+            </svg>
+            <p class="hero-placeholder-text">Van photo coming soon</p>
+          </div>
+        </div>
+        <div class="hero-badge-float">
+          <span class="badge badge--accent">Same-day available</span>
+          <span class="hero-badge-sub">7 days a week</span>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--color-slate);
+    color: #fff;
+    padding-block: var(--space-16) var(--space-12);
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  .hero-content {
+    max-width: 600px;
+  }
+
+  .hero-badge {
+    margin-bottom: var(--space-4);
+    opacity: 0;
+    animation: heroFadeIn 0.4s var(--ease-out) 0.05s forwards;
+  }
+
+  .hero-headline {
+    color: #fff;
+    font-size: var(--font-hero);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-5);
+    opacity: 0;
+    animation: heroFadeIn 0.5s var(--ease-out) 0.1s forwards;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.125rem);
+    line-height: 1.65;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: var(--space-8);
+    max-width: 52ch;
+    opacity: 0;
+    animation: heroFadeIn 0.5s var(--ease-out) 0.18s forwards;
+  }
+
+  .hero-actions {
+    opacity: 0;
+    animation: heroFadeIn 0.5s var(--ease-out) 0.26s forwards;
+  }
+
+  /* Phone group in hero */
+  .hero-phones {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-phone-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: var(--radius-md);
+    background-color: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+    text-decoration: none;
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  .hero-phone-btn:active { transform: scale(0.97); }
+
+  @media (hover: hover) and (pointer: fine) {
+    .hero-phone-btn:hover { background-color: rgba(255,255,255,0.14); }
+  }
+
+  .hero-phone-state {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .hero-phone-num {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .hero-form-link {
+    color: rgba(255,255,255,0.75);
+    border-color: rgba(255,255,255,0.2);
+    font-size: var(--font-small);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .hero-form-link:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.4);
+      background-color: rgba(255,255,255,0.08);
+    }
+  }
+
+  /* Non-home CTA row */
+  .hero-cta-row {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .hero-cta-row .btn--outline {
+    color: rgba(255,255,255,0.75);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .hero-cta-row .btn--outline:hover {
+      color: #fff;
+      background-color: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.35);
+    }
+  }
+
+  /* Hero image */
+  .hero-image-wrap {
+    position: relative;
+    opacity: 0;
+    animation: heroFadeIn 0.6s var(--ease-out) 0.3s forwards;
+  }
+
+  .hero-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.06);
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-image-fallback {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-image-placeholder .hero-image { opacity: 0; }
+  .hero-image-placeholder .hero-image-fallback { display: flex; }
+
+  .hero-placeholder-text {
+    font-size: var(--font-small);
+    color: var(--color-ink-soft);
+    max-width: none;
+  }
+
+  .hero-badge-float {
+    position: absolute;
+    bottom: var(--space-4);
+    right: var(--space-4);
+    background-color: var(--color-slate);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-md);
+    padding: 0.5rem 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .hero-badge-sub {
+    font-size: var(--font-xs);
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* Service/location hero adjustments */
+  .hero--service,
+  .hero--location,
+  .hero--contact {
+    padding-block: var(--space-12) var(--space-10);
+  }
+
+  .hero--service .hero-inner,
+  .hero--location .hero-inner,
+  .hero--contact .hero-inner {
+    grid-template-columns: 1fr;
+    max-width: var(--max-width-text);
+  }
+
+  .hero--service .hero-headline,
+  .hero--location .hero-headline,
+  .hero--contact .hero-headline {
+    font-size: var(--font-h2);
+  }
+
+  /* Keyframes */
+  @keyframes heroFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-badge,
+    .hero-headline,
+    .hero-sub,
+    .hero-actions,
+    .hero-image-wrap {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>

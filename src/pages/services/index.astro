@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ServiceGrid from '@/components/ServiceGrid.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import StickyMobileCTA from '@/components/StickyMobileCTA.astro';
+---
+
+<BaseLayout
+  title="Appliance Repair Services | DMV Appliance Repair"
+  description="We repair all major home appliances — refrigerators, washers, dryers, dishwashers, ovens, cooktops, garbage disposals, ice makers, and microwaves. Same-day service across the DMV."
+  schemaType="home"
+>
+  <section class="services-hero section--slate">
+    <div class="container services-hero-inner">
+      <h1>Appliance Repair Services</h1>
+      <p>All major home appliances, every major brand, same-day service 7 days a week.</p>
+    </div>
+  </section>
+
+  <ServiceGrid heading="All Services" />
+  <BookingForm />
+  <StickyMobileCTA />
+</BaseLayout>
+
+<style>
+  .services-hero {
+    background-color: var(--color-slate);
+    padding-block: var(--space-16) var(--space-12);
+  }
+  .services-hero-inner { max-width: 640px; }
+  .services-hero h1 { color: #fff; font-size: var(--font-h2); margin-bottom: var(--space-4); }
+  .services-hero p { font-size: var(--font-body); color: rgba(255,255,255,0.65); }
+</style>

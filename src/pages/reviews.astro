@@ -1,0 +1,145 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ReviewCard from '@/components/ReviewCard.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import StickyMobileCTA from '@/components/StickyMobileCTA.astro';
+import { reviews } from '@/data/reviews';
+---
+
+<BaseLayout
+  title="Customer Reviews | DMV Appliance Repair"
+  description="Real appliance repair reviews from DMV customers on Thumbtack. 4.8 stars, 20+ reviews. See what homeowners in Virginia, Maryland, and D.C. say about Pir and DMV Appliance Repair."
+  schemaType="home"
+>
+  <section class="reviews-hero section--slate">
+    <div class="container reviews-hero-inner">
+      <h1>What Our Customers Say</h1>
+      <p class="reviews-hero-sub">
+        Real reviews from real customers on Thumbtack — homeowners across Virginia, Maryland, and D.C.
+      </p>
+      <div class="reviews-rating-bar">
+        <div class="rating-number">4.8</div>
+        <div class="rating-stars" aria-label="4.8 out of 5 stars">
+          {Array.from({ length: 5 }).map(() => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          ))}
+        </div>
+        <div class="rating-source">
+          <span class="rating-count">20+ reviews</span>
+          <a
+            href="https://www.thumbtack.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rating-platform"
+          >
+            on Thumbtack ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews-page-grid-section">
+    <div class="container">
+      <div class="reviews-page-grid">
+        {reviews.map((review, i) => (
+          <div class="reveal" style={`transition-delay: ${i * 50}ms`}>
+            <ReviewCard
+              quote={review.quote}
+              author={review.author}
+              featured={review.featured}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <BookingForm />
+
+  <StickyMobileCTA />
+</BaseLayout>
+
+<style>
+  .reviews-hero {
+    background-color: var(--color-slate);
+    padding-block: var(--space-16) var(--space-12);
+  }
+
+  .reviews-hero-inner { max-width: 640px; }
+
+  .reviews-hero h1 {
+    color: #fff;
+    font-size: var(--font-h2);
+    margin-bottom: var(--space-3);
+  }
+
+  .reviews-hero-sub {
+    font-size: var(--font-body);
+    color: rgba(255,255,255,0.65);
+    margin-bottom: var(--space-6);
+  }
+
+  .reviews-rating-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .rating-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .rating-stars {
+    display: flex;
+    gap: 2px;
+    color: #F59E0B;
+  }
+
+  .rating-source {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .rating-count {
+    font-size: var(--font-small);
+    color: rgba(255,255,255,0.6);
+  }
+
+  .rating-platform {
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--duration-base) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .rating-platform:hover { color: var(--color-accent-soft); }
+  }
+
+  .reviews-page-grid-section { background-color: var(--color-bg-soft); }
+
+  .reviews-page-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .reviews-page-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 540px) {
+    .reviews-page-grid { grid-template-columns: 1fr; }
+  }
+</style>

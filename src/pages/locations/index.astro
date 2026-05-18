@@ -1,0 +1,158 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import StickyMobileCTA from '@/components/StickyMobileCTA.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import { cities } from '@/data/cities';
+
+const vaCities = cities.filter(c => c.state === 'VA');
+const mdCities = cities.filter(c => c.state === 'MD');
+const dcCities = cities.filter(c => c.state === 'DC');
+---
+
+<BaseLayout
+  title="Appliance Repair Locations | DMV Appliance Repair — Virginia, Maryland & D.C."
+  description="DMV Appliance Repair serves 25+ cities across Northern Virginia, Maryland, and Washington D.C. Same-day service 7 days a week. Find your city."
+  schemaType="home"
+>
+  <section class="locations-hero section--slate">
+    <div class="container locations-hero-inner">
+      <h1>Appliance Repair Across the DMV</h1>
+      <p>
+        We serve 25+ cities in Northern Virginia, Maryland, and Washington D.C.
+        Same-day service, 7 days a week.
+      </p>
+    </div>
+  </section>
+
+  <section class="section locations-list-section">
+    <div class="container">
+      <div class="locations-columns">
+        <div class="locations-col">
+          <h2 class="locations-col-heading">
+            <span class="state-tag">VA</span> Northern Virginia
+          </h2>
+          <ul class="city-list">
+            {vaCities.map(city => (
+              <li>
+                <a href={`/locations/${city.slug}/`} class="city-link">
+                  {city.name}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="locations-col">
+          <h2 class="locations-col-heading">
+            <span class="state-tag">MD</span> Maryland
+          </h2>
+          <ul class="city-list">
+            {mdCities.map(city => (
+              <li>
+                <a href={`/locations/${city.slug}/`} class="city-link">
+                  {city.name}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <h2 class="locations-col-heading" style="margin-top: var(--space-8)">
+            <span class="state-tag">DC</span> Washington D.C.
+          </h2>
+          <ul class="city-list">
+            {dcCities.map(city => (
+              <li>
+                <a href={`/locations/${city.slug}/`} class="city-link">
+                  {city.name}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <BookingForm />
+  <StickyMobileCTA />
+</BaseLayout>
+
+<style>
+  .locations-hero {
+    background-color: var(--color-slate);
+    padding-block: var(--space-16) var(--space-12);
+  }
+  .locations-hero-inner { max-width: 640px; }
+  .locations-hero h1 { color: #fff; font-size: var(--font-h2); margin-bottom: var(--space-4); }
+  .locations-hero p { font-size: var(--font-body); color: rgba(255,255,255,0.65); }
+
+  .locations-list-section { background-color: var(--color-bg-soft); }
+
+  .locations-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+  @media (max-width: 640px) { .locations-columns { grid-template-columns: 1fr; } }
+
+  .locations-col-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-body);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: var(--space-4);
+  }
+
+  .state-tag {
+    font-size: var(--font-xs);
+    font-weight: 700;
+    background-color: var(--color-accent);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    padding: 0.15rem 0.4rem;
+  }
+
+  .city-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .city-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-body);
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    transition:
+      color var(--duration-base) var(--ease-out),
+      background-color var(--duration-base) var(--ease-out),
+      padding-left var(--duration-base) var(--ease-out);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .city-link:hover {
+      color: var(--color-accent);
+      padding-left: var(--space-3);
+      background-color: var(--color-accent-soft);
+    }
+  }
+
+  .city-link svg { color: var(--color-ink-soft); flex-shrink: 0; }
+</style>

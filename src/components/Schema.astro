@@ -1,0 +1,96 @@
+---
+interface Props {
+  type: 'home' | 'service' | 'location' | 'article';
+  meta?: Record<string, unknown>;
+}
+
+const { type, meta = {} } = Astro.props;
+
+const businessBase = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://dmvappliance.com/#business",
+  "name": "DMV Appliance Repair LLC",
+  "url": "https://dmvappliance.com",
+  "logo": "https://dmvappliance.com/images/logo.png",
+  "image": "https://dmvappliance.com/images/van/hero-van.jpg",
+  "description": "Family-owned appliance repair serving Northern Virginia, Maryland, and Washington D.C. since 2007. Same-day service 7 days a week.",
+  "foundingDate": "2007",
+  "telephone": ["+17038667776", "+13019076666", "+12027832055"],
+  "email": "Info@dmvappliance.com",
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "Northern Virginia" },
+    { "@type": "AdministrativeArea", "name": "Maryland" },
+    { "@type": "City", "name": "Washington, D.C." }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "VA",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 38.9072,
+    "longitude": -77.0369
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "07:00",
+    "closes": "21:00"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "20",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "priceRange": "$$",
+  "currenciesAccepted": "USD",
+  "paymentAccepted": "Cash, Check, Credit Card",
+  "hasMap": "https://dmvappliance.com/contact/",
+  "sameAs": ["https://www.thumbtack.com"]
+};
+
+let schema: Record<string, unknown> = businessBase;
+
+if (type === 'service' && meta.serviceName) {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": meta.serviceName,
+    "provider": { "@id": "https://dmvappliance.com/#business" },
+    "description": meta.serviceDescription,
+    "areaServed": businessBase.areaServed,
+    "url": meta.url,
+  };
+}
+
+if (type === 'location' && meta.cityName) {
+  schema = {
+    ...businessBase,
+    "name": `DMV Appliance Repair — ${meta.cityName}`,
+    "areaServed": [{ "@type": "City", "name": meta.cityName, "containedInPlace": { "@type": "State", "name": meta.state } }],
+    "url": meta.url,
+  };
+}
+
+if (type === 'article' && meta.headline) {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": meta.headline,
+    "description": meta.description,
+    "author": { "@id": "https://dmvappliance.com/#business" },
+    "publisher": { "@id": "https://dmvappliance.com/#business" },
+    "datePublished": meta.datePublished ?? new Date().toISOString(),
+    "url": meta.url,
+    "image": meta.image ?? "https://dmvappliance.com/images/og-default.jpg",
+  };
+}
+
+const schemaStr = JSON.stringify(schema);
+---
+
+<script type="application/ld+json" set:html={schemaStr} />
