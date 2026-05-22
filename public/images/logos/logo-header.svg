@@ -26,6 +26,10 @@
     <polygon points="70,44 76,44 82,62 88,44 94,44 84,68 80,68"/>
   </g>
 
-  <!-- "APPLIANCE" — gray, lighter weight, aligned to right -->
-  <text x="104" y="64" font-family="'Inter Variable', Inter, system-ui, sans-serif" font-size="17" font-weight="500" letter-spacing="3" fill="#8A8F9A">APPLIANCE</text>
+  <!-- Divider line -->
+  <line x1="104" y1="48" x2="104" y2="68" stroke="#C2C7CE" stroke-width="1" opacity="0.4"/>
+
+  <!-- Two-line wordmark — vertically centered with DMV letters (y 44–68) -->
+  <text x="112" y="56" font-family="'Inter Variable', Inter, system-ui, sans-serif" font-size="14" font-weight="600" letter-spacing="2.5" fill="#8A8F9A">APPLIANCE</text>
+  <text x="113" y="69" font-family="'Inter Variable', Inter, system-ui, sans-serif" font-size="10.5" font-weight="500" letter-spacing="5" fill="#8A8F9A" opacity="0.6">REPAIR</text>
 </svg>

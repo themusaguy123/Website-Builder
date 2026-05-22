@@ -8,14 +8,14 @@ import { reviews } from '@/data/reviews';
 
 <BaseLayout
   title="Customer Reviews | DMV Appliance Repair"
-  description="Real appliance repair reviews from DMV customers on Thumbtack. 4.8 stars, 20+ reviews. See what homeowners in Virginia, Maryland, and D.C. say about Pir and DMV Appliance Repair."
+  description="50+ five-star reviews from homeowners in Virginia, Maryland, and D.C. See what customers say about Pir and DMV Appliance Repair on Thumbtack."
   schemaType="home"
 >
   <section class="reviews-hero section--slate">
     <div class="container reviews-hero-inner">
       <h1>What Our Customers Say</h1>
       <p class="reviews-hero-sub">
-        Real reviews from real customers on Thumbtack — homeowners across Virginia, Maryland, and D.C.
+        50+ five-star reviews from verified customers on Thumbtack — homeowners across Virginia, Maryland, and D.C.
       </p>
       <div class="reviews-rating-bar">
         <div class="rating-number">4.8</div>
@@ -27,15 +27,8 @@ import { reviews } from '@/data/reviews';
           ))}
         </div>
         <div class="rating-source">
-          <span class="rating-count">20+ reviews</span>
-          <a
-            href="https://www.thumbtack.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="rating-platform"
-          >
-            on Thumbtack ↗
-          </a>
+          <span class="rating-count">50+ reviews</span>
+          <span class="rating-platform">on Thumbtack</span>
         </div>
       </div>
     </div>
@@ -117,13 +110,7 @@ import { reviews } from '@/data/reviews';
   .rating-platform {
     font-size: var(--font-small);
     font-weight: 500;
-    color: var(--color-accent);
-    text-decoration: none;
-    transition: color var(--duration-base) var(--ease-out);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .rating-platform:hover { color: var(--color-accent-soft); }
+    color: rgba(255,255,255,0.45);
   }
 
   .reviews-page-grid-section { background-color: var(--color-bg-soft); }

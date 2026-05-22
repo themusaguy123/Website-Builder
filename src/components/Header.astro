@@ -18,16 +18,14 @@ const phones = [
   <div class="container header-inner">
     <!-- Logo -->
     <a href="/" class="header-logo" aria-label="DMV Appliance Repair — home">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect width="32" height="32" rx="8" fill="#FF6B1A"/>
-        <path d="M8 10h16M8 16h10M8 22h7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
-        <circle cx="22" cy="19" r="4" stroke="#fff" stroke-width="2"/>
-        <path d="M25 22l2.5 2.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
-      </svg>
-      <span class="header-logo-text">
-        <span class="logo-primary">DMV Appliance</span>
-        <span class="logo-secondary">Repair</span>
-      </span>
+      <img
+        src="/images/logos/logo-header.svg"
+        alt="DMV Appliance Repair"
+        class="header-logo-img"
+        width="175"
+        height="45"
+        loading="eager"
+      />
     </a>
 
     <!-- Desktop nav -->
@@ -119,7 +117,6 @@ const phones = [
   .header-logo {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
     flex-shrink: 0;
     text-decoration: none;
     transition: opacity var(--duration-base) var(--ease-out);
@@ -131,23 +128,14 @@ const phones = [
 
   .header-logo:active { opacity: 0.7; }
 
-  .header-logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
+  .header-logo-img {
+    display: block;
+    height: 40px;
+    width: auto;
   }
 
-  .logo-primary {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -0.01em;
-  }
-
-  .logo-secondary {
-    font-size: var(--font-small);
-    font-weight: 400;
-    color: rgba(255,255,255,0.6);
+  @media (max-width: 480px) {
+    .header-logo-img { height: 34px; }
   }
 
   /* Nav */

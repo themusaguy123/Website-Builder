@@ -16,10 +16,7 @@ const displayed = showAll ? reviews : reviews.slice(0, 6);
     <div class="section-header reveal">
       <h2>{heading}</h2>
       <p class="section-sub">
-        Real reviews from real customers on Thumbtack.
-        <a href="https://www.thumbtack.com" target="_blank" rel="noopener noreferrer" class="thumbtack-link">
-          View our Thumbtack profile ↗
-        </a>
+        50+ five-star reviews on Thumbtack from homeowners across Virginia, Maryland, and D.C.
       </p>
     </div>
 
@@ -58,17 +55,6 @@ const displayed = showAll ? reviews : reviews.slice(0, 6);
     color: var(--color-ink-muted);
     max-width: 48ch;
     margin-inline: auto;
-  }
-
-  .thumbtack-link {
-    color: var(--color-accent);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color var(--duration-base) var(--ease-out);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .thumbtack-link:hover { color: var(--color-accent-hover); }
   }
 
   .reviews-grid {

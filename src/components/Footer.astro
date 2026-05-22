@@ -46,13 +46,14 @@ const phones = [
     <!-- Brand column -->
     <div class="footer-brand">
       <a href="/" class="footer-logo" aria-label="DMV Appliance Repair home">
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="32" height="32" rx="8" fill="#FF6B1A"/>
-          <path d="M8 10h16M8 16h10M8 22h7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="22" cy="19" r="4" stroke="#fff" stroke-width="2"/>
-          <path d="M25 22l2.5 2.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
-        </svg>
-        <span class="footer-logo-name">DMV Appliance Repair</span>
+        <img
+          src="/images/logos/logo-header.svg"
+          alt="DMV Appliance Repair"
+          class="footer-logo-img"
+          width="168"
+          height="43"
+          loading="lazy"
+        />
       </a>
       <p class="footer-tagline">
         Honest, affordable appliance repair for homeowners across Virginia, Maryland, and D.C. Family-owned since 2007.
@@ -150,22 +151,22 @@ const phones = [
 
   /* Brand col */
   .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
+    display: inline-flex;
     text-decoration: none;
     margin-bottom: var(--space-4);
     transition: opacity var(--duration-base) var(--ease-out);
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .footer-logo:hover { opacity: 0.8; }
+    .footer-logo:hover { opacity: 0.75; }
   }
 
-  .footer-logo-name {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
+  .footer-logo:active { opacity: 0.6; }
+
+  .footer-logo-img {
+    display: block;
+    height: 38px;
+    width: auto;
   }
 
   .footer-tagline {

@@ -15,15 +15,15 @@ import BrandLogoStrip from '@/components/BrandLogoStrip.astro';
 const homeFAQ = [
   {
     q: 'Do you charge extra for weekend or evening appliance repair?',
-    a: 'No. We charge the same rate every day of the week — mornings, evenings, weekends, and holidays. The price we quote is the price you pay. No surprise fees.',
+    a: 'No — same rate every day of the week, including evenings, weekends, and holidays. The price we quote is what you pay.',
   },
   {
     q: 'How does the free service call work?',
-    a: 'The service call fee is waived when we complete the repair. If you decide not to proceed after we diagnose the problem, a service call fee applies. We give you a clear quote before starting any work so you can make an informed decision.',
+    a: 'The service call fee is waived when we do the repair. If you hear the diagnosis and decide not to move forward, there\'s a visit fee. Either way, we tell you exactly what\'s wrong and what it costs before we touch anything.',
   },
   {
     q: 'Do you carry parts on the truck?',
-    a: 'Yes — we stock common parts for the brands and appliances we see most often. This means most repairs are completed in a single visit. For less common parts, we order and return as quickly as possible.',
+    a: 'Yes — we keep the parts we use most often stocked on the truck. That\'s how most repairs get done in one visit. If we need something less common, we\'ll order it and come back, usually within a day or two.',
   },
   {
     q: 'What brands do you service?',
@@ -31,11 +31,11 @@ const homeFAQ = [
   },
   {
     q: 'What areas do you serve?',
-    a: 'We serve all of Northern Virginia (Fairfax, Loudoun, Prince William, and Arlington counties), Maryland (Montgomery, Prince George\'s, and Howard counties), and all neighborhoods and quadrants of Washington D.C.',
+    a: 'All of Northern Virginia (Fairfax, Loudoun, Prince William, and Arlington counties), Maryland (Montgomery, Prince George\'s, and Howard counties), and every neighborhood in Washington D.C.',
   },
   {
     q: 'Is there a warranty on repairs?',
-    a: 'Yes. Every repair comes with a warranty on parts and labor. If something isn\'t right after the repair, we come back and make it right.',
+    a: 'Yes. Every repair comes with a warranty on parts and labor. If something\'s not right after we leave, we come back and sort it out.',
   },
 ];
 ---
@@ -47,16 +47,16 @@ const homeFAQ = [
 >
   <Hero
     variant="home"
-    headline="Expert Appliance Repair Across the DMV — Same Day, 7 Days a Week"
-    subheadline="Family-owned and serving Northern Virginia, Maryland, and Washington D.C. since 2007. We carry common parts on the truck so most repairs are done in one visit — no waiting for a second appointment."
-    badge="Family-owned since 2007"
+    headline="The Repair Tech Who Tells You When It's Not Worth Fixing"
+    subheadline="Pir has been repairing appliances across the DMV since 2007. Same-day service, parts on the truck, flat rates — and if the repair doesn't make financial sense, he'll tell you upfront."
+    badge="Same-day service · 7 days a week"
   />
 
   <TrustBar />
 
-  <ServiceGrid />
-
   <HonestyCallout />
+
+  <ServiceGrid />
 
   <ReviewsGrid />
 
